@@ -17,6 +17,8 @@ if(CLANG_FORMAT)
     )
 endif()
 
+set(INCLUDE_DIRECTORIES include/leetcode_cpp)
+
 # Adding clang-tidy target if executable is found
 find_program(CLANG_TIDY "clang-tidy")
 if(CLANG_TIDY)
@@ -25,8 +27,9 @@ if(CLANG_TIDY)
     COMMAND clang-tidy
     ${ALL_CXX_SOURCE_FILES}
     -config=''
+    --checks=performance-*
     --
-    -std=c++11
+    -std=c++20
     ${INCLUDE_DIRECTORIES}
     )
 endif()
