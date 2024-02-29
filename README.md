@@ -69,5 +69,8 @@ make -C build clang-format
 
 ## To Do
 
+- [ ] rephrase this README, especially write down prerequisites and dependencies
 - [ ] How to use debugger tools on Visual Studio Code?
-- [ ] How to add clang format, tidy, and sanitizer? [Standard C++ Toolset - Anastasia Kazakova - C++ on Sea 2023](https://www.youtube.com/watch?v=kLNCphYSggY)
+- [ ] `find_program(CLANG_TIDY "clang-tidy")` is not successful on Mac?
+- [ ] more pre-commit hook (currently commented out) are not available on Mac?
+- [ ] use more c++ tool, like sanitizer? [Standard C++ Toolset - Anastasia Kazakova - C++ on Sea 2023](https://www.youtube.com/watch?v=kLNCphYSggY)
