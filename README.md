@@ -12,13 +12,12 @@ This project is a collection of solutions to LeetCode problems provided by ***SH
 - generating documentation from annotated C++ sources using [Doxygen](https://www.doxygen.nl)
   - maybe we can try to use in combination with sphinx (breathe bridge plugin) -> [reference](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)
 
-## Build
+## Build on Linux and MacOS
 
-The following commands create `build` directory under the current working directory, run cmake under the `build` directory
+The following commands create `build` directory under the current working directory, and run the generator (Unix Makefiles) with debug build type.
 
 ```sh
-rm -rf build
-cmake . -B build && make -C build
+cmake -G "Unix Makefiles" -B build . && cmake --build build --config Debug -j16
 ```
 
 To run Google-Tests
@@ -30,7 +29,7 @@ To run Google-Tests
 To run executable:
 
 ```sh
-./build/bin/solution --help
+./build/src/bin/solution --help
 ```
 
 ## Build and Open Doxygen Documentation
@@ -60,22 +59,9 @@ It is recommended to use [Visual Studio Code](https://code.visualstudio.com/) an
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 
-```sh
-🍺  /opt/homebrew/Cellar/include-what-you-use/0.21: 32 files, 8.3MB
-==> Running `brew cleanup include-what-you-use`...
-==> Caveats
-==> llvm
-To use the bundled libc++ please add the following LDFLAGS:
-  LDFLAGS="-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
+If you are using Visual Studio Code and showing some error messages for include headers, set Cmake: `Build Directory` to `${workspaceFolder}/build`
 
-llvm is keg-only, which means it was not symlinked into /opt/homebrew,
-because macOS already provides this software and installing another version in
-parallel can cause all kinds of trouble.
+## To Do
 
-If you need to have llvm first in your PATH, run:
-  echo 'export PATH="/opt/homebrew/opt/llvm/bin:$PATH"' >> ~/.zshrc
-
-For compilers to find llvm you may need to set:
-  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-  export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-```
+- [ ] How to use debugger tools on Visual Studio Code?
+- [ ] How to add clang format, tidy, and sanitizer? [Standard C++ Toolset - Anastasia Kazakova - C++ on Sea 2023](https://www.youtube.com/watch?v=kLNCphYSggY)
