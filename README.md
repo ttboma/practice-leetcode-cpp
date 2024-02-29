@@ -61,6 +61,12 @@ It is recommended to use [Visual Studio Code](https://code.visualstudio.com/) an
 
 If you are using Visual Studio Code and showing some error messages for include headers, set Cmake: `Build Directory` to `${workspaceFolder}/build`
 
+use this command to clang-format all cpp and hpp files:
+
+```bash
+make -C build clang-format
+```
+
 ## To Do
 
 - [ ] How to use debugger tools on Visual Studio Code?

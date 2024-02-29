@@ -20,3 +20,6 @@ set(CXX_EXTENSIONS OFF)
 add_subdirectory(src)
 add_subdirectory(tests)
 add_subdirectory(docs)
+
+# Including custom cmake rules
+include(cmake/clang-cxx-dev-tools.cmake)
