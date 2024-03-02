@@ -18,11 +18,11 @@ This project is a collection of solutions to LeetCode problems provided by ***SH
 Dependencies:
 
 - cxx compiler
-- cmake
 - make
+- cmake
 - boost
-- google-test
-- doxygen
+- google-test (optional)
+- doxygen (optional)
 
 The following commands create `build-debug` directory under the current working directory, and run the generator of your choice (in this example, Unix Makefiles) with debug or release build type. Then, run google-test to check if everything is successful.
 And finally, run the binary `solution`:
@@ -54,11 +54,11 @@ Dependencies:
 
 - [Visual Studio](https://code.visualstudio.com/docs/cpp/config-msvc#_run-vs-code-outside-the-developer-command-prompt), make sure that your **Desktop development with C++** includes:
   - MSVC
-  - cmake
   - clang (optional)
+  - cmake
 - boost
-- google-test
-- doxygen
+- google-test (optional)
+- doxygen (optional)
 
 ```powershell
 > cmake -G "Visual Studio 17 2022" -B build

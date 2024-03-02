@@ -4,6 +4,7 @@
         "Kazakova",
         "LLDB",
         "Makefiles",
+        "MSVC",
         "Toolset"
     ]
 }
