@@ -23,5 +23,5 @@ endif()
 find_package(Doxygen)
 
 if(NOT ${DOXYGEN_FOUND})
-  message(WARNING "Doxygen need to be installed to generate the doxygen documentation")
+  message(WARNING "Doxygen need to be installed to generate the doxygen documentation.")
 endif()
