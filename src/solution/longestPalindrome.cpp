@@ -1,7 +1,7 @@
 #include "solution.h"
 
 // This is an implementation of
-// [Manacher’s
+// [Manacher's
 // Algorithm](https://medium.com/hoskiss-stand/manacher-299cf75db97e)
 //
 // For i = 0..(s.size()*2 + 1),
@@ -48,10 +48,10 @@ std::string Solution::longestPalindrome(std::string s) {
   }
   // Get the index of the greatest value in LPS
   auto it = std::max_element(LPS.begin(), LPS.end());
-  int centor = std::distance(LPS.begin(), it);
+  int center = std::distance(LPS.begin(), it);
 
-  // s'[(centor-LPS[centor])..=(centor+LPS[centor])]
-  auto pos = centor - LPS[centor];
-  auto len = (LPS[centor] * 2 + 1) / 2 + (pos % 2);
+  // s'[(center-LPS[center])..=(center+LPS[center])]
+  auto pos = center - LPS[center];
+  auto len = (LPS[center] * 2 + 1) / 2 + (pos % 2);
   return s.substr(pos / 2, len);
 }

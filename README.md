@@ -4,38 +4,74 @@
 
 This project is a collection of solutions to LeetCode problems provided by ***SHIEH YUEH-CHANG*** written in **C++20**. The purpose of the project is to practice:
 
-- code compilation using [Apple clang version 13.0.0](https://developer.apple.com/xcode/cpp/) with [C++20](https://en.cppreference.com/w/cpp/20) language support
-- debugging using [LLDB](https://lldb.llvm.org)
-- building a c++ project with [CMake](https://cmake.org)
-- version-controlling using [Git](https://git-scm.com)
-- unit-tests using [Google Test](https://github.com/google/googletest)
-- generating documentation from annotated C++ sources using [Doxygen](https://www.doxygen.nl)
-  - maybe we can try to use in combination with sphinx (breathe bridge plugin) -> [reference](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)
+- Building a c++ project with [CMake](https://cmake.org) for multiple platforms
+- Version-controlling using [Git](https://git-scm.com)
+- Design program options with [Boost.Program_options](https://www.boost.org/doc/libs/1_62_0/doc/html/program_options.html)
+- Unit-tests using [Google Test](https://github.com/google/googletest)
+- Generating documentation from annotated C++ sources using [Doxygen](https://www.doxygen.nl)
+  - and maybe we can try to use in combination with sphinx (breathe bridge plugin) -> [reference](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)
 
-## Build on Linux and MacOS
+## Build
 
-The following commands create `build` directory under the current working directory, and run the generator (Unix Makefiles) with debug build type.
+### Build on Linux and MacOS with single-configuration generator (Unix Makefiles)
+
+Dependencies:
+
+- cxx compiler
+- cmake
+- make
+- boost
+- google-test
+- doxygen
+
+The following commands create `build-debug` directory under the current working directory, and run the generator of your choice (in this example, Unix Makefiles) with debug or release build type. Then, run google-test to check if everything is successful.
+And finally, run the binary `solution`:
 
 ```sh
-cmake -G "Unix Makefiles" -B build . && cmake --build build --config Debug -j16
+# build with debug build type
+% cmake -G "Unix Makefiles" -B build-debug .
+% cmake --build build-debug --config Debug -j16
+% ./build-debug/tests/test_solution
+% ./build-debug/src/bin/solution --help
+
+# or with release build type
+% cmake -G "Unix Makefiles" -B build-release .
+% cmake --build build-release --config Release -j16
+% ./build-release/tests/test_solution
+% ./build-release/src/bin/solution --help
 ```
 
-To run Google-Tests
+To build and open Doxygen documentation:
 
 ```sh
-./build/tests/test_solution
+% cmake --build build-release --target docs
+% open ./build-release/docs/html/index.html
 ```
 
-To run executable:
+### Build on Windows with Multi-configuration Generator (Visual Studio 17 2022)
 
-```sh
-./build/src/bin/solution --help
-```
+Dependencies:
 
-## Build and Open Doxygen Documentation
+- [Visual Studio](https://code.visualstudio.com/docs/cpp/config-msvc#_run-vs-code-outside-the-developer-command-prompt), make sure that your **Desktop development with C++** includes:
+  - MSVC
+  - cmake
+  - clang (optional)
+- boost
+- google-test
+- doxygen
 
-```sh
-make docs -C build && open ./build/docs/html/index.html
+```powershell
+> cmake -G "Visual Studio 17 2022" -B build
+
+# debug build
+> cmake --build build --config Debug -j16
+> .\build\tests\Debug\test_solution.exe
+> .\build\src\bin\Debug\solution.exe
+
+# and release build
+> cmake --build build --config Release -j16
+> .\build\tests\Release\test_solution.exe
+> .\build\src\bin\Release\solution.exe
 ```
 
 ## Development Note
@@ -59,17 +95,17 @@ It is recommended to use [Visual Studio Code](https://code.visualstudio.com/) an
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 
-If you are using Visual Studio Code and showing some error messages for include headers, set Cmake: `Build Directory` to `${workspaceFolder}/build`
+If you are using Visual Studio Code and showing some error messages for include headers, set Cmake: `Build Directory` to `${workspaceFolder}/build` or `${workspaceFolder}/build-debug` or `${workspaceFolder}/build-release` or whatever
+your cmake binary directory
 
-use this command to clang-format all cpp and hpp files:
+Please use this cmake custom command to exploit clang-format on all cpp and hpp files, where `build` followed by `--build` option is the cmake build directory you specified by, for example, `cmake -G "Unix Makefiles" -B build-debug .`
 
 ```bash
-make -C build clang-format
+% cmake --build build-debug --target clang-format
 ```
 
 ## To Do
 
-- [ ] rephrase this README, especially write down prerequisites and dependencies
 - [ ] How to use debugger tools on Visual Studio Code?
 - [ ] `find_program(CLANG_TIDY "clang-tidy")` is not successful on Mac?
 - [ ] more pre-commit hook (currently commented out) are not available on Mac?
