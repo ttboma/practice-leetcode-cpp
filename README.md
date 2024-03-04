@@ -56,12 +56,56 @@ Dependencies:
   - MSVC
   - clang (optional)
   - cmake
-- boost
+- [boost](https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.7z)
 - google-test (optional)
 - doxygen (optional)
 
+To install boost with default toolset:
+
+```powershell
+> cd C:\Program Files\boost\boost_1_82_0
+> bootstrap.bat
+> b2 install --prefix="C:\Program Files\boost" --with-date_time --with-filesystem --with-program_options --with-regex --with-system
+```
+
+To build with MSBuild and Visual C++ (MSVC)
+
 ```powershell
 > cmake -G "Visual Studio 17 2022" -B build
+-- Selecting Windows SDK version 10.0.22621.0 to target Windows 10.0.19044.
+-- The CXX compiler identification is MSVC 19.39.33521.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Boost: C:/Program Files/boost/lib/cmake/Boost-1.82.0/BoostConfig.cmake (found version "1.82.0") found components: program_options
+-- Could NOT find GTest (missing: GTEST_LIBRARY GTEST_INCLUDE_DIR GTEST_MAIN_LIBRARY)
+fetching google-test from https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip ...
+-- The C compiler identification is MSVC 19.39.33521.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found Python: C:/Program Files (x86)/Microsoft Visual Studio/Shared/Python39_64/python.exe (found version "3.9.13") found components: Interpreter
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Found Threads: TRUE
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE)
+CMake Warning at cmake/find-dependency.cmake:26 (message):
+  Doxygen need to be installed to generate the doxygen documentation.
+Call Stack (most recent call first):
+  CMakeLists.txt:11 (include)
+
+
+-- Configuring done (15.8s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/Johns575/Projects/leetcode_cpp-main/build
 
 # debug build
 > cmake --build build --config Debug -j16
@@ -74,32 +118,80 @@ Dependencies:
 > .\build\src\bin\Release\solution.exe
 ```
 
-Note that if I use MSbuild + Clang to build, boost linking will fail
+Note that if I am going to build with MSBuild and Clang or with Ninga and Clang, linking to boost libraries will fail:
 
 ```powershell
 > cmake -G "Visual Studio 17 2022" -B build -T ClangCL
-> cmake --build build --config Debug -j16
-.NET Framework 的 MSBuild 版本 17.9.5+33de0b227
+-- Selecting Windows SDK version 10.0.22621.0 to target Windows 10.0.19044.
+-- The CXX compiler identification is Clang 17.0.3 with MSVC-like command-line
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang-cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at C:/Program Files/boost/lib/cmake/Boost-1.82.0/BoostConfig.cmake:141 (find_package):
+  Found package configuration file:
 
-  1>Checking Build System
-  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/build/_deps/googletest-src/googlemock/CMakeLists.txt
-  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/build/_deps/googletest-src/googlemock/CMakeLists.txt
-  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/build/_deps/googletest-src/googletest/CMakeLists.txt
-  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/src/CMakeLists.txt
-  gtest.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\lib\Debug\gtest.lib
-  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/build/_deps/googletest-src/googletest/CMakeLists.txt
-  gtest_main.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\lib\Debug\gtest_main.lib
-  gmock.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\lib\Debug\gmock.lib
-  gmock_main.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\lib\Debug\gmock_main.lib
-  leetcode_cpp.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\src\Debug\leetcode_cpp.lib
-  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/tests/CMakeLists.txt
-  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/src/bin/CMakeLists.txt
-lld-link : error : could not open 'libboost_program_options-clangw17-mt-gd-x64-1_82.lib': no such file or directory [C:\Users\Johns575\Projects\leetcode_cpp-main\build\src\bin\solut
-ion.vcxproj]
-  test_solution.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\tests\Debug\test_solution.exe
+    C:/Program Files/boost/lib/cmake/boost_program_options-1.82.0/boost_program_options-config.cmake
+
+  but it set boost_program_options_FOUND to FALSE so package
+  "boost_program_options" is considered to be NOT FOUND.  Reason given by
+  package:
+
+  No suitable build variant has been found.
+
+  The following variants have been tried and rejected:
+
+  * libboost_program_options-vc143-mt-gd-x64-1_82.lib (vc143, detected
+  clangw17, set Boost_COMPILER to override)
+
+  * libboost_program_options-vc143-mt-x64-1_82.lib (vc143, detected clangw17,
+  set Boost_COMPILER to override)
+
+Call Stack (most recent call first):
+  C:/Program Files/boost/lib/cmake/Boost-1.82.0/BoostConfig.cmake:262 (boost_find_component)
+  C:/Program Files/CMake/share/cmake-3.29/Modules/FindBoost.cmake:594 (find_package)
+  cmake/find-dependency.cmake:2 (find_package)
+  CMakeLists.txt:11 (include)
+
+-- Configuring incomplete, errors occurred!
 ```
 
-and if I try to build boost with clang
+```powershell
+> cmake -B build -G Ninja -DCMAKE_C_COMPILER="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\Llvm\bin\clang.exe" -DCMAKE_CXX_COMPILER="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\Llvm\bin\clang++.exe"
+-- The CXX compiler identification is Clang 17.0.3 with GNU-like command-line
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/clang++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at C:/Program Files/boost/lib/cmake/Boost-1.82.0/BoostConfig.cmake:141 (find_package):
+  Found package configuration file:
+
+    C:/Program Files/boost/lib/cmake/boost_program_options-1.82.0/boost_program_options-config.cmake
+
+  but it set boost_program_options_FOUND to FALSE so package
+  "boost_program_options" is considered to be NOT FOUND.  Reason given by
+  package:
+
+  No suitable build variant has been found.
+
+  The following variants have been tried and rejected:
+
+  * libboost_program_options-vc143-mt-gd-x64-1_82.lib (64 bit, need 32)
+
+  * libboost_program_options-vc143-mt-x64-1_82.lib (64 bit, need 32)
+
+Call Stack (most recent call first):
+  C:/Program Files/boost/lib/cmake/Boost-1.82.0/BoostConfig.cmake:262 (boost_find_component)
+  C:/Program Files/CMake/share/cmake-3.29/Modules/FindBoost.cmake:594 (find_package)
+  cmake/find-dependency.cmake:2 (find_package)
+  CMakeLists.txt:11 (include)
+
+-- Configuring incomplete, errors occurred!
+```
+
+And if I try to build boost with clang, it fails:
 
 ```powershell
 > b2 toolset=clang install --prefix="C:\Program Files\boost" --with-date_time --with-filesystem --with-program_options --with-regex --with-system

@@ -5,6 +5,7 @@
         "LLDB",
         "Makefiles",
         "MSVC",
+        "Ninga",
         "Toolset"
     ]
 }
