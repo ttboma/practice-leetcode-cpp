@@ -74,6 +74,47 @@ Dependencies:
 > .\build\src\bin\Release\solution.exe
 ```
 
+Note that if I use MSbuild + Clang to build, boost linking will fail
+
+```powershell
+> cmake -G "Visual Studio 17 2022" -B build -T ClangCL
+> cmake --build build --config Debug -j16
+.NET Framework 的 MSBuild 版本 17.9.5+33de0b227
+
+  1>Checking Build System
+  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/build/_deps/googletest-src/googlemock/CMakeLists.txt
+  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/build/_deps/googletest-src/googlemock/CMakeLists.txt
+  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/build/_deps/googletest-src/googletest/CMakeLists.txt
+  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/src/CMakeLists.txt
+  gtest.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\lib\Debug\gtest.lib
+  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/build/_deps/googletest-src/googletest/CMakeLists.txt
+  gtest_main.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\lib\Debug\gtest_main.lib
+  gmock.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\lib\Debug\gmock.lib
+  gmock_main.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\lib\Debug\gmock_main.lib
+  leetcode_cpp.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\src\Debug\leetcode_cpp.lib
+  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/tests/CMakeLists.txt
+  Building Custom Rule C:/Users/Johns575/Projects/leetcode_cpp-main/src/bin/CMakeLists.txt
+lld-link : error : could not open 'libboost_program_options-clangw17-mt-gd-x64-1_82.lib': no such file or directory [C:\Users\Johns575\Projects\leetcode_cpp-main\build\src\bin\solut
+ion.vcxproj]
+  test_solution.vcxproj -> C:\Users\Johns575\Projects\leetcode_cpp-main\build\tests\Debug\test_solution.exe
+```
+
+and if I try to build boost with clang
+
+```powershell
+> b2 toolset=clang install --prefix="C:\Program Files\boost" --with-date_time --with-filesystem --with-program_options --with-regex --with-system
+clang-linux.compile.c++ bin.v2\libs\date_time\build\clang-linux-17\debug\address-model-64\link-static\threading-multi\visibility-hidden\gregorian\greg_month.obj
+clang-linux.compile.c++ bin.v2\libs\program_options\build\clang-linux-17\debug\address-model-64\link-static\threading-multi\visibility-hidden\convert.obj
+clang-linux.archive bin.v2\libs\date_time\build\clang-linux-17\debug\address-model-64\link-static\threading-multi\visibility-hidden\libboost_date_time-clang17-mt-d-x64-1_82.lib
+CreateProcessA() Windows API failed: 2 - 系統找不到指定的檔案。
+
+(略)
+
+...failed updating 12 targets...
+...skipped 36 targets...
+...updated 17123 targets...
+```
+
 ## Development Note
 
 Please follow the conventions, as noted below, to contribute to this project.
