@@ -1,11 +1,8 @@
 #include "solution.h"
 
-template <typename T>
-using Vec = std::vector<T>;
-using String = std::string;
-Vec<Vec<int>> Solution::insert(Vec<Vec<int>> &intervals,
-                               Vec<int> &newInterval) {
-  auto cmp = [](int a, Vec<int> const &b) { return a < b[0]; };
+std::vector<std::vector<int>> Solution::insert(
+    std::vector<std::vector<int>> &intervals, std::vector<int> &newInterval) {
+  auto cmp = [](int a, std::vector<int> const &b) { return a < b[0]; };
   auto it =
       std::upper_bound(intervals.begin(), intervals.end(), newInterval[0], cmp);
   auto it_end = std::upper_bound(it, intervals.end(), newInterval[1], cmp);

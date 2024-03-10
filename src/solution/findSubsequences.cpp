@@ -1,13 +1,9 @@
-#include <set>
-
 #include "solution.h"
 
-template <typename T>
-using Vec = std::vector<T>;
-
-Vec<Vec<int>> Solution::findSubsequences(Vec<int> &nums) {
-  std::set<Vec<int>> result;
-  Vec<int> sequence;
+std::vector<std::vector<int>> Solution::findSubsequences(
+    std::vector<int> &nums) {
+  std::set<std::vector<int>> result;
+  std::vector<int> sequence;
   auto backtrack = [&](int index, auto &&backtrack) -> void {
     // if we have checked all elements
     if (index == nums.size()) {
@@ -29,6 +25,6 @@ Vec<Vec<int>> Solution::findSubsequences(Vec<int> &nums) {
     backtrack(index + 1, backtrack);
   };
   backtrack(0, backtrack);
-  return Vec<Vec<int>>(std::make_move_iterator(result.begin()),
-                       std::make_move_iterator(result.end()));
+  return std::vector<std::vector<int>>(std::make_move_iterator(result.begin()),
+                                       std::make_move_iterator(result.end()));
 }
