@@ -205,6 +205,38 @@ Please use this cmake custom command to exploit clang-format on all cpp and hpp 
 % cmake --build build-debug --target clang-format
 ```
 
+### How to debug with CodeLLDB
+
+To debug using CodeLLDB, press `ctrl+shift+D` and choose names besides the green triangle button from `simple debugging solution` and `simple debugging test_solution`, if you got `.vscode/launch.json` as the following.
+Note that if you need to pass arguments to binary `solution`, just change the field `args`
+
+```json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "simple debugging solution",
+            "program": "${workspaceFolder}/build/src/bin/solution",
+            "args": ["--fib"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "simple debugging test_solution",
+            "program": "${workspaceFolder}/build/tests/test_solution",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
+```
+
 ## To Do
 
 - [ ] How to use debugger tools on Visual Studio Code?
