@@ -24,28 +24,28 @@ Dependencies:
 - google-test (optional)
 - doxygen (optional)
 
-The following commands create `build-debug` directory under the current working directory, and run the generator of your choice (in this example, Unix Makefiles) with debug or release build type. Then, run google-test to check if everything is successful.
+The following commands create `build` directory under the current working directory, and run the generator of your choice (in this example, Unix Makefiles) with debug or release build type. Then, run google-test to check if everything is successful.
 And finally, run the binary `solution`:
 
 ```sh
 # build with debug build type
-% cmake -G "Unix Makefiles" -B build-debug .
-% cmake --build build-debug --config Debug -j16
-% ./build-debug/tests/test_solution
-% ./build-debug/src/bin/solution --help
+% cmake -S . -G "Unix Makefiles" -B build -D CMAKE_BUILD_TYPE=Debug
+% cmake --build build -j16
+% ./build/tests/test_solution
+% ./build/src/bin/solution --help
 
 # or with release build type
-% cmake -G "Unix Makefiles" -B build-release .
-% cmake --build build-release --config Release -j16
-% ./build-release/tests/test_solution
-% ./build-release/src/bin/solution --help
+% cmake -S . -G "Unix Makefiles" -B build -D CMAKE_BUILD_TYPE=Release
+% cmake --build build -j16
+% ./build/tests/test_solution
+% ./build/src/bin/solution --help
 ```
 
 To build and open Doxygen documentation:
 
 ```sh
-% cmake --build build-release --target docs
-% open ./build-release/docs/html/index.html
+% cmake --build build --target docs
+% open ./build/docs/html/index.html
 ```
 
 ### Build on Windows with Multi-configuration Generator (Visual Studio 17 2022)
@@ -71,52 +71,20 @@ To install boost with default toolset:
 To build with MSBuild and Visual C++ (MSVC)
 
 ```powershell
-> cmake -G "Visual Studio 17 2022" -B build
--- Selecting Windows SDK version 10.0.22621.0 to target Windows 10.0.19044.
--- The CXX compiler identification is MSVC 19.39.33521.0
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/bin/Hostx64/x64/cl.exe - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Found Boost: C:/Program Files/boost/lib/cmake/Boost-1.82.0/BoostConfig.cmake (found version "1.82.0") found components: program_options
--- Could NOT find GTest (missing: GTEST_LIBRARY GTEST_INCLUDE_DIR GTEST_MAIN_LIBRARY)
-fetching google-test from https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip ...
--- The C compiler identification is MSVC 19.39.33521.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/bin/Hostx64/x64/cl.exe - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Found Python: C:/Program Files (x86)/Microsoft Visual Studio/Shared/Python39_64/python.exe (found version "3.9.13") found components: Interpreter
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
--- Looking for pthread_create in pthreads
--- Looking for pthread_create in pthreads - not found
--- Looking for pthread_create in pthread
--- Looking for pthread_create in pthread - not found
--- Found Threads: TRUE
--- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE)
-CMake Warning at cmake/find-dependency.cmake:26 (message):
-  Doxygen need to be installed to generate the doxygen documentation.
-Call Stack (most recent call first):
-  CMakeLists.txt:11 (include)
+> cmake -S . -G "Visual Studio 17 2022" -B build
 
-
--- Configuring done (15.8s)
--- Generating done (0.1s)
--- Build files have been written to: C:/Users/Johns575/Projects/leetcode_cpp-main/build
-
-# debug build
+# build with debug build type
 > cmake --build build --config Debug -j16
 > .\build\tests\Debug\test_solution.exe
 > .\build\src\bin\Debug\solution.exe
 
-# and release build
+# or with release build type
 > cmake --build build --config Release -j16
 > .\build\tests\Release\test_solution.exe
 > .\build\src\bin\Release\solution.exe
 ```
+
+### Having Problem of Building on Windows with Clang
 
 Note that if I am going to build with MSBuild and Clang or with Ninga and Clang, linking to boost libraries will fail:
 
@@ -231,7 +199,7 @@ It is recommended to use [Visual Studio Code](https://code.visualstudio.com/) an
 If you are using Visual Studio Code and showing some error messages for include headers, set Cmake: `Build Directory` to `${workspaceFolder}/build` or `${workspaceFolder}/build-debug` or `${workspaceFolder}/build-release` or whatever
 your cmake binary directory
 
-Please use this cmake custom command to exploit clang-format on all cpp and hpp files, where `build` followed by `--build` option is the cmake build directory you specified by, for example, `cmake -G "Unix Makefiles" -B build-debug .`
+Please use this cmake custom command to exploit clang-format on all cpp and hpp files, where `build` followed by `--build` option is the cmake build directory you specified by, for example, `cmake -S . -G "Unix Makefiles" -B build`
 
 ```bash
 % cmake --build build-debug --target clang-format

@@ -32,11 +32,13 @@ int main(int argc, char *argv[]) {
     int n;
     std::cin >> n;
     std::cout << Solution{}.fib(n) << std::endl;
-  }
-
-  if (vm.count("isSubsequence")) {
+  } else if (vm.count("isSubsequence")) {
     std::string s, t;
     std::cin >> s >> t;
     std::cout << std::boolalpha << Solution{}.isSubsequence(s, t) << std::endl;
+  } else {
+    return -1;
   }
+
+  return 0;
 }

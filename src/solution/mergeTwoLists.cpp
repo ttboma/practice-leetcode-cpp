@@ -16,8 +16,7 @@ ListNode *Solution::mergeTwoLists(ListNode *list1, ListNode *list2) {
   // Event: assert that list1->val <= list2->val
 
   for (ListNode *x = n; list2 != nullptr; x = n) {
-    for (; !(x->next == nullptr || x->next->val > list2->val); x = x->next)
-      ;
+    for (; !(x->next == nullptr || x->next->val > list2->val); x = x->next);
 
     n = list2;
     list2 = x->next;

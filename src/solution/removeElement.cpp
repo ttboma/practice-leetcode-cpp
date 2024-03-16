@@ -5,8 +5,7 @@ int Solution::removeElement(std::vector<int> &nums, int val) {
 
   for (std::vector<int>::size_type i = 0; i < k; ++i) {
     if (nums[i] == val) {
-      while (k != i && nums[--k] == val)
-        ;
+      while (k != i && nums[--k] == val);
       nums[i] = nums[k];
     }
   }
