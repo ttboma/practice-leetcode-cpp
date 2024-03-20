@@ -1,4 +1,14 @@
-# README
+# Table of Content
+
+- [Table of Content](#table-of-content)
+  - [Introduction](#introduction)
+  - [Build](#build)
+    - [Build on Linux and MacOS with single-configuration generator (Unix Makefiles)](#build-on-linux-and-macos-with-single-configuration-generator-unix-makefiles)
+    - [Build on Windows with Multi-configuration Generator (Visual Studio 17 2022)](#build-on-windows-with-multi-configuration-generator-visual-studio-17-2022)
+    - [Having Problem of Building on Windows with Clang](#having-problem-of-building-on-windows-with-clang)
+  - [Development Note](#development-note)
+    - [How to debug with CodeLLDB](#how-to-debug-with-codelldb)
+  - [To Do](#to-do)
 
 ## Introduction
 
@@ -192,9 +202,12 @@ It is recommended to use [Visual Studio Code](https://code.visualstudio.com/) an
 - [C/C++ for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
 - [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) and [CMake](https://marketplace.visualstudio.com/items?itemName=twxs.cmake)
 - [Makefile Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools)
-- [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
-- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- [CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb)
+- [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+- [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+- [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
 
 If you are using Visual Studio Code and showing some error messages for include headers, set Cmake: `Build Directory` to `${workspaceFolder}/build` or `${workspaceFolder}/build-debug` or `${workspaceFolder}/build-release` or whatever
 your cmake binary directory
@@ -239,7 +252,6 @@ Note that if you need to pass arguments to binary `solution`, just change the fi
 
 ## To Do
 
-- [ ] How to use debugger tools on Visual Studio Code?
 - [ ] `find_program(CLANG_TIDY "clang-tidy")` is not successful on Mac?
 - [ ] more pre-commit hook (currently commented out) are not available on Mac?
 - [ ] use more c++ tool, like sanitizer? [Standard C++ Toolset - Anastasia Kazakova - C++ on Sea 2023](https://www.youtube.com/watch?v=kLNCphYSggY)
