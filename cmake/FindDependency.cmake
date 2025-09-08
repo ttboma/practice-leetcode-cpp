@@ -1,14 +1,16 @@
+include(FetchContent)
+
 # Find boost
 find_package(Boost COMPONENTS program_options REQUIRED)
 
 # Find googletest
 find_package(GTest)
 
-# [If googletest is not found, try to fetch it from github](https://google.github.io/googletest/quickstart-cmake.html)
-if(NOT ${GTest_FOUND})
-    message("fetching google-test from https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip ...")
+if(${GTest_FOUND})
+    message(STATUS "googletest found: ${GTest_VERSION}")
+else()
+    message(STATUS "fetching google-test from https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip ...")
 
-    include(FetchContent)
     FetchContent_Declare(
         googletest
         URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip

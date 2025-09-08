@@ -1,21 +1,21 @@
-#include "solution.h"
+#include "solution.hpp"
 
 ListNode *Solution::deleteDuplicates(ListNode *head) {
-  if (head == nullptr) return head;
+    if (head == nullptr) return head;
 
-  auto it = head;
-  int val = it->val;
+    auto it = head;
+    int val = it->val;
 
-  while (it->next != nullptr) {
-    if (it->next->val == val) {
-      auto t = it->next;
-      it->next = t->next;
-      delete t;
-    } else {
-      val = it->next->val;
-      it = it->next;
+    while (it->next != nullptr) {
+        if (it->next->val == val) {
+            auto t = it->next;
+            it->next = t->next;
+            delete t;
+        } else {
+            val = it->next->val;
+            it = it->next;
+        }
     }
-  }
 
-  return head;
+    return head;
 }

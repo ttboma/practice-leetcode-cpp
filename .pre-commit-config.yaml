@@ -13,7 +13,7 @@ repos:
     rev: v1.3.5
     hooks:
       - id: clang-format
-        args: [--style=Google]
+        args: [--style=file]
       # cannot success with the following line??
       # - id: clang-tidy
       # - id: oclint

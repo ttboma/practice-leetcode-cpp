@@ -1,14 +1,14 @@
-#include "solution.h"
+#include "solution.hpp"
 
 bool Solution::isSubsequence(std::string s, std::string t) {
-  if (s.empty()) {
-    return true;
-  }
-  auto it = s.begin();
-  for (auto m : t) {
-    if (m == *it && ++it == s.end()) {
-      return true;
+    if (s.empty()) {
+        return true;
     }
-  }
-  return false;
+    auto it = s.begin();
+    for (auto m : t) {
+        if (m == *it && ++it == s.end()) {
+            return true;
+        }
+    }
+    return false;
 }

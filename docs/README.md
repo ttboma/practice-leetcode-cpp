@@ -14,12 +14,15 @@
 
 This project is a collection of solutions to LeetCode problems provided by ***SHIEH YUEH-CHANG*** written in **C++20**. The purpose of the project is to practice:
 
-- Building a c++ project with [CMake](https://cmake.org) for multiple platforms
+- Classical data structures and algorithms and Developing proficiency with modern C++20 features.
+- Building a C++ project with [CMake](https://cmake.org) for multiple platforms
 - Version-controlling using [Git](https://git-scm.com)
 - Design program options with [Boost.Program_options](https://www.boost.org/doc/libs/1_62_0/doc/html/program_options.html)
 - Unit-tests using [Google Test](https://github.com/google/googletest)
 - Generating documentation from annotated C++ sources using [Doxygen](https://www.doxygen.nl)
   - and maybe we can try to use in combination with sphinx (breathe bridge plugin) -> [reference](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)
+- Gain proficiency with your preferred IDE and its associated extensions.
+For example, when using Visual Studio Code, the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack) provides essential features. In particular, ensure familiarity with language server support (IntelliSense) and integrated debugging capabilities.
 
 ## Build
 

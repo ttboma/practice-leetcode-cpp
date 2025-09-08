@@ -1,37 +1,37 @@
-#include "solution.h"
+#include "solution.hpp"
 
 bool Solution::isSameTree(TreeNode *p, TreeNode *q) {
-  auto pstk = std::vector<TreeNode *>{};
-  auto qstk = std::vector<TreeNode *>{};
+    auto pstk = std::vector<TreeNode *>{};
+    auto qstk = std::vector<TreeNode *>{};
 
-  if (p != nullptr) pstk.push_back(p);
-  if (q != nullptr) qstk.push_back(q);
+    if (p != nullptr) pstk.push_back(p);
+    if (q != nullptr) qstk.push_back(q);
 
-  while (!pstk.empty()) {
-    if (qstk.empty()) return false;
+    while (!pstk.empty()) {
+        if (qstk.empty()) return false;
 
-    auto p = pstk.back();
-    pstk.pop_back();
-    auto q = qstk.back();
-    qstk.pop_back();
+        auto p = pstk.back();
+        pstk.pop_back();
+        auto q = qstk.back();
+        qstk.pop_back();
 
-    if (p->val != q->val) return false;
+        if (p->val != q->val) return false;
 
-    if (p->right != nullptr) {
-      if (q->right == nullptr) return false;
-      pstk.push_back(p->right);
-      qstk.push_back(q->right);
-    } else if (q->right != nullptr)
-      return false;
+        if (p->right != nullptr) {
+            if (q->right == nullptr) return false;
+            pstk.push_back(p->right);
+            qstk.push_back(q->right);
+        } else if (q->right != nullptr)
+            return false;
 
-    if (p->left != nullptr) {
-      if (q->left == nullptr) return false;
-      pstk.push_back(p->left);
-      qstk.push_back(q->left);
-    } else if (q->left != nullptr)
-      return false;
-  }
-  if (!qstk.empty()) return false;
+        if (p->left != nullptr) {
+            if (q->left == nullptr) return false;
+            pstk.push_back(p->left);
+            qstk.push_back(q->left);
+        } else if (q->left != nullptr)
+            return false;
+    }
+    if (!qstk.empty()) return false;
 
-  return true;
+    return true;
 }

@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
+        "BINDIR",
+        "cpps",
         "Doxygen",
         "Kazakova",
         "LLDB",
@@ -7,5 +9,6 @@
         "MSVC",
         "Ninga",
         "Toolset"
-    ]
+    ],
+    "C_Cpp.intelliSenseEngine": "default",
 }

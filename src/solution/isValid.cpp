@@ -1,30 +1,30 @@
-#include "solution.h"
+#include "solution.hpp"
 
 bool Solution::isValid(std::string s) {
-  // Assuming s only contains "(", ")", "[", "]", "{", "}"
-  // And 1 <= s.size() <= 10^4
+    // Assuming s only contains "(", ")", "[", "]", "{", "}"
+    // And 1 <= s.size() <= 10^4
 
-  std::vector<char> stack;
+    std::vector<char> stack;
 
-  for (auto const &b : s) {
-    if (b == ')') {
-      if (stack.empty() || stack.back() != '(')
-        return false;
-      else
-        stack.pop_back();
-    } else if (b == ']') {
-      if (stack.empty() || stack.back() != '[')
-        return false;
-      else
-        stack.pop_back();
-    } else if (b == '}') {
-      if (stack.empty() || stack.back() != '{')
-        return false;
-      else
-        stack.pop_back();
-    } else {
-      stack.push_back(b);
+    for (auto const &b : s) {
+        if (b == ')') {
+            if (stack.empty() || stack.back() != '(')
+                return false;
+            else
+                stack.pop_back();
+        } else if (b == ']') {
+            if (stack.empty() || stack.back() != '[')
+                return false;
+            else
+                stack.pop_back();
+        } else if (b == '}') {
+            if (stack.empty() || stack.back() != '{')
+                return false;
+            else
+                stack.pop_back();
+        } else {
+            stack.push_back(b);
+        }
     }
-  }
-  return stack.empty();
+    return stack.empty();
 }
