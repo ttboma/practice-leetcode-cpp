@@ -63,4 +63,4 @@ enable_testing()
 
 add_subdirectory(tests)
 
-# add_subdirectory(docs)
+add_subdirectory(docs)

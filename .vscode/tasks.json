@@ -3,15 +3,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "format-all",
-            "type": "shell",
-            "command": "find . \\( -name \"*.cpp\" -o -name \"*.hpp\" \\) | xargs clang-format -i -style=file",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        },
-        {
             "label": "workflow-x64-Darwin-Debug",
             "type": "shell",
             "command": "cmake --workflow --preset x64-Darwin-Debug",
@@ -23,6 +14,15 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "format-all",
+            "type": "shell",
+            "command": "find . \\( -name \"*.cpp\" -o -name \"*.hpp\" \\) | xargs clang-format -i -style=file",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
         }
     ]
 }

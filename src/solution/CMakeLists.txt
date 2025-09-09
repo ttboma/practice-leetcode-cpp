@@ -8,6 +8,12 @@ add_library(
     ${src_solution_cpps}
 )
 
+target_compile_definitions(
+    src_solution
+    PRIVATE
+    FIB_IMPL_DYNAMIC_PROGRAMMING
+)
+
 target_include_directories(
     src_solution
     PUBLIC

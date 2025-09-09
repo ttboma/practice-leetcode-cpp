@@ -2,7 +2,9 @@
     "cSpell.words": [
         "BINDIR",
         "cpps",
+        "Doxyfile",
         "Doxygen",
+        "googletest",
         "Kazakova",
         "LLDB",
         "Makefiles",
@@ -11,4 +13,60 @@
         "Toolset"
     ],
     "C_Cpp.intelliSenseEngine": "default",
+    "todo-tree.highlights.defaultHighlight": {
+        "icon": "alert",
+        "type": "text-and-comment",
+        "foreground": "#000000", // black
+        "background": "#FFFFFF", // white
+        "opacity": 50,
+        "iconColour": "#0000FF", // blue
+        "gutterIcon": true
+    },
+    "todo-tree.highlights.customHighlight": {
+        "BUG:": {
+            "icon": "bug",
+            "foreground": "#FFFFFF", // white
+            "background": "#DC143C", // crimson
+            "iconColour": "#DC143C" // crimson
+        },
+        "FIXME:": {
+            "icon": "tools",
+            "foreground": "#DC143C", // crimson
+            "background": "#DEB887", // burlywood
+            "iconColour": "#DEB887" // burlywood
+        },
+        "INCOMPLETE:": {
+            "icon": "alert",
+            "foreground": "#FFFFFF", // white
+            "background": "#C71585", // mediumvioletred
+            "iconColour": "#C71585" // mediumvioletred
+        },
+        "TODO:": {
+            "icon": "checkbox",
+            "foreground": "#000000", // black
+            "background": "#FFFF00", // yellow
+            "iconColour": "#FFFF00" // yellow
+        },
+        "NOTE:": {
+            "icon": "note",
+            "foreground": "#FFFFFF", // white
+            "background": "#6495ED", // cornflowerblue
+            "iconColour": "#6495ED" // cornflowerblue
+        },
+        "DOCS:": {
+            "icon": "book",
+            "foreground": "#FFFFFF", // white
+            "background": "#228B22", // forestgreen
+            "iconColour": "#228B22" // forestgreen
+        }
+    },
+    "todo-tree.general.tags": [
+        "BUG:",
+        "FIXME:",
+        "INCOMPLETE:",
+        "TODO:",
+        "NOTE:",
+        "DOCS:"
+    ],
+    "todo-tree.regex.regex": "((//|#)|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS).*(\\n\\s*(//|#)\\s{2,}.*)*",
 }

@@ -19,6 +19,13 @@
             "program": "${workspaceFolder}/build/tests/test_solution",
             "args": [],
             "cwd": "${workspaceFolder}"
+        }, {
+            "type": "lldb",
+            "request": "launch",
+            "name": "debugging test_solution fib.example1",
+            "program": "${workspaceFolder}/out/build/x64-Darwin-Debug/tests/solution/tests_solution",
+            "args": ["--gtest_filter=fib.example1", "--gtest_also_run_disabled_tests"],
+            "cwd": "${workspaceFolder}",
         }
     ]
 }

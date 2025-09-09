@@ -1,9 +1,9 @@
 include(FetchContent)
 
-# Find boost
+# Find [boost](https://www.boost.org/)
 find_package(Boost COMPONENTS program_options REQUIRED)
 
-# Find googletest
+# Find [googletest](https://google.github.io/googletest/)
 find_package(GTest)
 
 if(${GTest_FOUND})
@@ -21,7 +21,7 @@ else()
     FetchContent_MakeAvailable(googletest)
 endif()
 
-# look for Doxygen package
+# Find [Doxygen](https://www.doxygen.nl/)
 find_package(Doxygen)
 
 if(NOT ${DOXYGEN_FOUND})

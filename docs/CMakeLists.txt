@@ -6,10 +6,13 @@ if(DOXYGEN_FOUND)
     # request to configure the file
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
 
-    # Note: do not put "ALL" - this builds docs together with application EVERY TIME!
-    add_custom_target( docs
+    # NOTE:
+    #   do not put "ALL" - this builds docs together with application EVERY TIME!
+    add_custom_target(
+        docs
         COMMAND doxygen ${DOXYGEN_OUT}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating API documentation with Doxygen"
-        VERBATIM )
+        VERBATIM
+    )
 endif()

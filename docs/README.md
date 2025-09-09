@@ -2,9 +2,9 @@
 
 - [Table of Content](#table-of-content)
   - [Introduction](#introduction)
-  - [Build](#build)
-    - [Build on Linux and MacOS with single-configuration generator (Unix Makefiles)](#build-on-linux-and-macos-with-single-configuration-generator-unix-makefiles)
-    - [Build on Windows with Multi-configuration Generator (Visual Studio 17 2022)](#build-on-windows-with-multi-configuration-generator-visual-studio-17-2022)
+  - [Build, Test, Docs and Install](#build-test-docs-and-install)
+    - [Build on MacOS with Single-Configuration Generator (Unix Makefiles)](#build-on-macos-with-single-configuration-generator-unix-makefiles)
+    - [Build on Windows with Multi-Configuration Generator (Visual Studio 17 2022)](#build-on-windows-with-multi-configuration-generator-visual-studio-17-2022)
     - [Having Problem of Building on Windows with Clang](#having-problem-of-building-on-windows-with-clang)
   - [Development Note](#development-note)
     - [How to debug with CodeLLDB](#how-to-debug-with-codelldb)
@@ -22,46 +22,50 @@ This project is a collection of solutions to LeetCode problems provided by ***SH
 - Generating documentation from annotated C++ sources using [Doxygen](https://www.doxygen.nl)
   - and maybe we can try to use in combination with sphinx (breathe bridge plugin) -> [reference](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)
 - Gain proficiency with your preferred IDE and its associated extensions.
-For example, when using Visual Studio Code, the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack) provides essential features. In particular, ensure familiarity with language server support (IntelliSense) and integrated debugging capabilities.
+  - For example, when using Visual Studio Code, the [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack) provides essential features. In particular, ensure familiarity with language server support (IntelliSense) and integrated debugging capabilities.
+  - Nice to have: [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree), [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker), [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
 
-## Build
+## Build, Test, Docs and Install
 
-### Build on Linux and MacOS with single-configuration generator (Unix Makefiles)
+### Build on MacOS with Single-Configuration Generator (Unix Makefiles)
 
-Dependencies:
-
-- cxx compiler
-- make
-- cmake
-- boost
-- google-test (optional)
-- doxygen (optional)
-
-The following commands create `build` directory under the current working directory, and run the generator of your choice (in this example, Unix Makefiles) with debug or release build type. Then, run google-test to check if everything is successful.
-And finally, run the binary `solution`:
+Build with debug build type:
 
 ```sh
-# build with debug build type
-% cmake -S . -G "Unix Makefiles" -B build -D CMAKE_BUILD_TYPE=Debug
-% cmake --build build -j16
-% ./build/tests/test_solution
-% ./build/src/bin/solution --help
-
-# or with release build type
-% cmake -S . -G "Unix Makefiles" -B build -D CMAKE_BUILD_TYPE=Release
-% cmake --build build -j16
-% ./build/tests/test_solution
-% ./build/src/bin/solution --help
+% cmake --workflow --preset x64-Darwin-Debug
 ```
 
-To build and open Doxygen documentation:
+If you needs to run individual tests:
 
 ```sh
-% cmake --build build --target docs
-% open ./build/docs/html/index.html
+# lists all tests
+% ctest --preset x64-Darwin-Debug -N
+
+# you can also pass filters through ctest and just run the test you want
+# The -V (verbose) will show the actual executable path and args, which help debug the test
+% ctest --preset x64-Darwin-Debug -R fib.example7 -V
 ```
 
-### Build on Windows with Multi-configuration Generator (Visual Studio 17 2022)
+Open Doxygen documentation:
+
+```sh
+% cmake --build --preset x64-Darwin-Debug --target docs
+% open out/build/x64-Darwin-Debug/docs/html/index.html
+```
+
+Build with release build type:
+
+```sh
+% cmake --workflow --preset x64-Darwin-Release
+```
+
+Install the release package:
+
+```sh
+% cmake --build --preset x64-Darwin-Release --target install
+```
+
+### Build on Windows with Multi-Configuration Generator (Visual Studio 17 2022)
 
 Dependencies:
 
