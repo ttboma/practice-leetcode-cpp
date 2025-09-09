@@ -1,4 +1,7 @@
 /out
+
 # The reason we don't ignore /.vscode is that we want to keep our VsCode settings
 # and configurations for future reference.
 #/.vscode
+
+/.venv
