@@ -7,7 +7,6 @@
     - [Build on Windows with Multi-Configuration Generator (Visual Studio 17 2022)](#build-on-windows-with-multi-configuration-generator-visual-studio-17-2022)
     - [Having Problem of Building on Windows with Clang](#having-problem-of-building-on-windows-with-clang)
   - [Development Note](#development-note)
-    - [How to debug with CodeLLDB](#how-to-debug-with-codelldb)
   - [To Do](#to-do)
 
 ## Introduction
@@ -32,37 +31,35 @@ This project is a collection of solutions to LeetCode problems provided by ***SH
 Build with debug build type:
 
 ```sh
+# Set parallelism for all build steps in the workflow preset
+% export CMAKE_BUILD_PARALLEL_LEVEL=8
 % cmake --workflow --preset x64-Darwin-Debug
 ```
 
 If you needs to run individual tests:
 
 ```sh
-# lists all tests
+# Lists all tests
 % ctest --preset x64-Darwin-Debug -N
 
-# you can also pass filters through ctest and just run the test you want
+# You can also pass filters through ctest and just run the test you want
 # The -V (verbose) will show the actual executable path and args, which help debug the test
-% ctest --preset x64-Darwin-Debug -R fib.example7 -V
+% ctest --preset x64-Darwin-Debug -R fib.example1 -V
+
+# Debug with lldb or gdb
+% lldb -- /Users/shiehyuehchang/Projects/leetcode/leetcode_cpp/out/build/x64-Darwin-Debug/tests/solution/tests_solution "--gtest_filter=fib.example1" "--gtest_also_run_disabled_tests"
 ```
 
 Open Doxygen documentation:
 
 ```sh
-% cmake --build --preset x64-Darwin-Debug --target docs
 % open out/build/x64-Darwin-Debug/docs/html/index.html
 ```
 
-Build with release build type:
+Build with release build type and install the release package:
 
 ```sh
 % cmake --workflow --preset x64-Darwin-Release
-```
-
-Install the release package:
-
-```sh
-% cmake --build --preset x64-Darwin-Release --target install
 ```
 
 ### Build on Windows with Multi-Configuration Generator (Visual Studio 17 2022)
@@ -223,38 +220,6 @@ Please use this cmake custom command to exploit clang-format on all cpp and hpp 
 
 ```bash
 % cmake --build build-debug --target clang-format
-```
-
-### How to debug with CodeLLDB
-
-To debug using CodeLLDB, press `ctrl+shift+D` and choose names besides the green triangle button from `simple debugging solution` and `simple debugging test_solution`, if you got `.vscode/launch.json` as the following.
-Note that if you need to pass arguments to binary `solution`, just change the field `args`
-
-```json
-{
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "simple debugging solution",
-            "program": "${workspaceFolder}/build/src/bin/solution",
-            "args": ["--fib"],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "simple debugging test_solution",
-            "program": "${workspaceFolder}/build/tests/test_solution",
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        }
-    ]
-}
 ```
 
 ## To Do

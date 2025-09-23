@@ -27,3 +27,15 @@ find_package(Doxygen)
 if(NOT ${DOXYGEN_FOUND})
   message(WARNING "Doxygen need to be installed to generate the doxygen documentation.")
 endif()
+
+find_program(PRE_COMMIT_EXECUTABLE pre-commit)
+
+if (PRE_COMMIT_EXECUTABLE)
+    # Run pre-commit on all files
+    add_custom_target(pre_commit
+        COMMAND ${PRE_COMMIT_EXECUTABLE} run --all-files
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMENT "Running pre-commit checks"
+        VERBATIM
+    )
+endif()

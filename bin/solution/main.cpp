@@ -1,6 +1,9 @@
+#include <algorithm>
 #include <boost/program_options.hpp>
 #include <iostream>
+#include <iterator>
 #include <solution.hpp>
+#include <sstream>
 
 namespace po = boost::program_options;
 
@@ -18,6 +21,7 @@ int main(int argc, char *argv[]) {
         ("fib"          , "[509. Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)")
         ("isSubsequence", "[392. Is Subsequence](https://leetcode.com/problems/is-subsequence/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("hasCycle"     , "[141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("merge"        , "[88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)")
     ;
     // clang-format on
 
@@ -40,6 +44,22 @@ int main(int argc, char *argv[]) {
         std::cout << std::boolalpha << Solution{}.isSubsequence(s, t) << std::endl;
     } else if (vm.count("hasCycle")) {
         std::cout << std::boolalpha << Solution{}.hasCycle(nullptr) << std::endl;
+    } else if (vm.count("merge")) {
+        std::vector<int> nums1, nums2;
+        int m, n;
+        std::string buffer;
+        std::getline(std::cin, buffer);
+        std::istringstream iss1(std::move(buffer));
+        std::copy(std::istream_iterator<int>(iss1), std::istream_iterator<int>(), std::back_inserter(nums1));
+        std::cin >> m;
+        std::cin.ignore();  // Ignore the newline after m
+        std::getline(std::cin, buffer);
+        std::istringstream iss2(std::move(buffer));
+        std::copy(std::istream_iterator<int>(iss2), std::istream_iterator<int>(), std::back_inserter(nums2));
+        std::cin >> n;
+        Solution{}.merge(nums1, m, nums2, n);
+        std::ranges::copy(nums1, std::ostream_iterator<int>(std::cout, " "));
+        std::cout << std::endl;
     } else {
         return -1;
     }

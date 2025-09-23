@@ -30,12 +30,20 @@
         {
             "name": "x64-Darwin-Debug",
             "configurePreset": "x64-Darwin-Debug",
-            "hidden": false
+            "hidden": false,
+            "targets": [
+                "docs",
+                "pre_commit",
+                "all"
+            ]
         },
         {
             "name": "x64-Darwin-Release",
             "configurePreset": "x64-Darwin-Release",
-            "hidden": false
+            "hidden": false,
+            "targets": [
+                "install"
+            ]
         }
     ],
     "testPresets": [

@@ -117,6 +117,7 @@ class Solution {
     bool isSubsequence(std::string s, std::string t);
     bool hasCycle(ListNode* head);
     ListNode* reverseBetween(ListNode* head, int left, int right);
+    void merge(std::vector<int>& nums1, int m, std::vector<int>& nums2, int n);
 
     // Comparison utilities
    public:
