@@ -1,6 +1,8 @@
 #pragma once
 
 #include <algorithm>
+#include <functional>
+#include <iterator>
 #include <map>
 #include <numeric>
 #include <queue>
@@ -118,6 +120,7 @@ class Solution {
     bool hasCycle(ListNode* head);
     ListNode* reverseBetween(ListNode* head, int left, int right);
     void merge(std::vector<int>& nums1, int m, std::vector<int>& nums2, int n);
+    int findKthLargest(std::vector<int>& nums, int k);
 
     // Comparison utilities
    public:

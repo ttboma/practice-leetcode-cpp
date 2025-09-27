@@ -22,6 +22,7 @@ int main(int argc, char *argv[]) {
         ("isSubsequence", "[392. Is Subsequence](https://leetcode.com/problems/is-subsequence/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("hasCycle"     , "[141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("merge"        , "[88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("findKthLargest", "[215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/1783751282/?envType=study-plan-v2&envId=top-interview-150)")
     ;
     // clang-format on
 
@@ -60,6 +61,15 @@ int main(int argc, char *argv[]) {
         Solution{}.merge(nums1, m, nums2, n);
         std::ranges::copy(nums1, std::ostream_iterator<int>(std::cout, " "));
         std::cout << std::endl;
+    } else if (vm.count("findKthLargest")) {
+        std::vector<int> nums;
+        int k;
+        std::string buffer;
+        std::getline(std::cin, buffer);
+        std::istringstream iss(std::move(buffer));
+        std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(nums));
+        std::cin >> k;
+        std::cout << Solution{}.findKthLargest(nums, k) << std::endl;
     } else {
         return -1;
     }
