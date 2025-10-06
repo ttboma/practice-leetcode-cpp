@@ -7,9 +7,29 @@
 
 namespace po = boost::program_options;
 
+// Overload operator<< for std::pair<T,T>
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const std::pair<T, T>& p) {
+    return os << "(" << p.first << ", " << p.second << ")";
+}
+
+// Overload operator<< for std::vector<T>
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
+    if (vec.empty()) {
+        return os << "[]";
+    }
+    os << "[" << vec[0];
+    for (size_t i = 1; i < vec.size(); ++i) {
+        os << ", " << vec[i];
+    }
+    os << "]";
+    return os;
+}
+
 const auto HELP_MSG = "Usage: solution <COMMAND>\n\nCommands:";
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     po::options_description desc(HELP_MSG);
 
     // NOTE:
@@ -23,6 +43,7 @@ int main(int argc, char *argv[]) {
         ("hasCycle"     , "[141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("merge"        , "[88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("findKthLargest", "[215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/1783751282/?envType=study-plan-v2&envId=top-interview-150)")
+        ("kSmallestPairs", "[373. Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/?envType=study-plan-v2&envId=top-interview-150)")
     ;
     // clang-format on
 
@@ -70,6 +91,19 @@ int main(int argc, char *argv[]) {
         std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(nums));
         std::cin >> k;
         std::cout << Solution{}.findKthLargest(nums, k) << std::endl;
+    } else if (vm.count("kSmallestPairs")) {
+        std::vector<int> nums1, nums2;
+        int k;
+        std::string buffer;
+        std::getline(std::cin, buffer);
+        std::istringstream iss1(std::move(buffer));
+        std::copy(std::istream_iterator<int>(iss1), std::istream_iterator<int>(), std::back_inserter(nums1));
+        std::getline(std::cin, buffer);
+        std::istringstream iss2(std::move(buffer));
+        std::copy(std::istream_iterator<int>(iss2), std::istream_iterator<int>(), std::back_inserter(nums2));
+        std::cin >> k;
+        auto result = Solution{}.kSmallestPairs(nums1, nums2, k);
+        std::cout << result << std::endl;
     } else {
         return -1;
     }

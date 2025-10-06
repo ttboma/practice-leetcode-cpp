@@ -121,6 +121,7 @@ class Solution {
     ListNode* reverseBetween(ListNode* head, int left, int right);
     void merge(std::vector<int>& nums1, int m, std::vector<int>& nums2, int n);
     int findKthLargest(std::vector<int>& nums, int k);
+    std::vector<std::vector<int>> kSmallestPairs(std::vector<int>& nums1, std::vector<int>& nums2, int k);
 
     // Comparison utilities
    public:
