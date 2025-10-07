@@ -122,6 +122,7 @@ class Solution {
     void merge(std::vector<int>& nums1, int m, std::vector<int>& nums2, int n);
     int findKthLargest(std::vector<int>& nums, int k);
     std::vector<std::vector<int>> kSmallestPairs(std::vector<int>& nums1, std::vector<int>& nums2, int k);
+    int findMaximizedCapital(int k, int w, std::vector<int>& profits, std::vector<int>& capital);
 
     // Comparison utilities
    public:

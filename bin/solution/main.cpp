@@ -44,6 +44,7 @@ int main(int argc, char* argv[]) {
         ("merge"        , "[88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("findKthLargest", "[215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/1783751282/?envType=study-plan-v2&envId=top-interview-150)")
         ("kSmallestPairs", "[373. Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("findMaximizedCapital", "[502. IPO](https://leetcode.com/problems/ipo/description/?envType=study-plan-v2&envId=top-interview-150)")
     ;
     // clang-format on
 
@@ -104,6 +105,19 @@ int main(int argc, char* argv[]) {
         std::cin >> k;
         auto result = Solution{}.kSmallestPairs(nums1, nums2, k);
         std::cout << result << std::endl;
+    } else if (vm.count("findMaximizedCapital")) {
+        int k, w;
+        std::vector<int> profits, capital;
+        std::string buffer;
+        std::cin >> k >> w;
+        std::cin.ignore();  // Ignore the newline after w
+        std::getline(std::cin, buffer);
+        std::istringstream iss1(std::move(buffer));
+        std::copy(std::istream_iterator<int>(iss1), std::istream_iterator<int>(), std::back_inserter(profits));
+        std::getline(std::cin, buffer);
+        std::istringstream iss2(std::move(buffer));
+        std::copy(std::istream_iterator<int>(iss2), std::istream_iterator<int>(), std::back_inserter(capital));
+        std::cout << Solution{}.findMaximizedCapital(k, w, profits, capital) << std::endl;
     } else {
         return -1;
     }
