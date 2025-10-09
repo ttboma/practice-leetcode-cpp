@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 int Solution::maxProfit(std::vector<int> &prices) {
     int profit = 0;

@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 // KMP (Knuth-Morris-Pratt) algorithm
 std::vector<std::string::size_type> kmp(const std::string &p) {

@@ -17,7 +17,7 @@ target_compile_definitions(
 target_include_directories(
     src_solution
     PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/src
 )
 
 # link src_solution to compiler_flags

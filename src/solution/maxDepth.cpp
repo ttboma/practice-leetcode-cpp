@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 int Solution::maxDepth(TreeNode *root) {
     using info = std::pair<TreeNode *, int>;

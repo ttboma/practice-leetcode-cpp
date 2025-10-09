@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 bool Solution::isSymmetric(TreeNode *root) {
     if (root == nullptr) return true;

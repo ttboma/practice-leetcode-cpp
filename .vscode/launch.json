@@ -8,27 +8,19 @@
             "type": "lldb",
             "request": "launch",
             "name": "simple debugging solution",
-            "program": "${workspaceFolder}/build/src/bin/solution",
+            "program": "${workspaceFolder}/out/build/x64-Darwin-Debug/bin/solution/solution",
             "args": [
                 "--fib"
             ],
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
         },
         {
             "type": "lldb",
             "request": "launch",
-            "name": "simple debugging test_solution",
-            "program": "${workspaceFolder}/build/tests/test_solution",
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "debugging test_solution fib.example1",
+            "name": "debugging test_solution findKthLargest.example1",
             "program": "${workspaceFolder}/out/build/x64-Darwin-Debug/tests/solution/tests_solution",
             "args": [
-                "--gtest_filter=fib.example1",
+                "--gtest_filter=findKthLargest.example1",
                 "--gtest_also_run_disabled_tests"
             ],
             "cwd": "${workspaceFolder}",

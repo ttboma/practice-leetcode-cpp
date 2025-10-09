@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 bool Solution::hasCycle(ListNode *head) {
     ListNode *slow = head;

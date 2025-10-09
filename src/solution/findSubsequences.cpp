@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 std::vector<std::vector<int>> Solution::findSubsequences(std::vector<int> &nums) {
     std::set<std::vector<int>> result;

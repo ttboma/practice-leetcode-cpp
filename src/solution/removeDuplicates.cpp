@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 int Solution::removeDuplicates(std::vector<int> &nums) {
     if (nums.size() == 0) {

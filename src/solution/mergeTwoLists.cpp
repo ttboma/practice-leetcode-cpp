@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 ListNode *Solution::mergeTwoLists(ListNode *list1, ListNode *list2) {
     if (list1 == nullptr) return list2;

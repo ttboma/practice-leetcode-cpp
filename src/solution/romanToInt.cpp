@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 namespace syc {
 template <typename CharDescriptor>

@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 int Solution::totalFruit(std::vector<int> &fruits) {
     if (fruits.size() < 3) {

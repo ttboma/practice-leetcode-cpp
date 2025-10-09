@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 bool Solution::isPalindrome(int x) {
     if (x == 0) return true;

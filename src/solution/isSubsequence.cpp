@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 bool Solution::isSubsequence(std::string s, std::string t) {
     if (s.empty()) {

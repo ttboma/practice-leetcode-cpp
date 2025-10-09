@@ -1,6 +1,7 @@
 #include <iostream>
 
-#include "solution.hpp"
+#include "solution/solution.hpp"
+#include "sort/quickSort.hpp"
 
 /// # 215. Kth Largest Element in an Array
 ///
@@ -32,28 +33,6 @@
 ///
 /// - <code>1 <= k <= nums.length <= 10^5</code>
 /// - <code>-10^4 <= nums[i] <= 10^4</code>
-int findKthLargest_helper(std::vector<int>::iterator first, std::vector<int>::iterator last, int i) {
-    if (i == 0) {
-        return *std::max_element(first, last);
-    }
-
-    auto pivot = *std::next(first, std::distance(first, last) / 2);
-
-    auto middle1 = std::partition(first, last, [&](const auto& e) { return e > pivot; });
-
-    if (i < std::distance(first, middle1)) {
-        return findKthLargest_helper(first, middle1, i);
-    }
-
-    auto middle2 = std::partition(first, last, [&](const auto& e) { return !(e < pivot); });
-
-    if (auto d = std::distance(first, middle2); i < d) {
-        return *middle1;
-    } else {
-        return findKthLargest_helper(middle2, last, i - d);
-    }
-}
-
 int Solution::findKthLargest(std::vector<int>& nums, int k) {
-    return findKthLargest_helper(nums.begin(), nums.end(), k - 1);
+    return *quickSelect(nums.begin(), nums.end(), std::greater<>(), k - 1);
 }

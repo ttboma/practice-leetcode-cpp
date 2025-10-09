@@ -2,7 +2,7 @@
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <iterator>
-#include <solution.hpp>
+#include <solution/solution.hpp>
 #include <sstream>
 
 namespace po = boost::program_options;

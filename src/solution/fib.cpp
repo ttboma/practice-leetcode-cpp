@@ -1,4 +1,4 @@
-#include "solution.hpp"
+#include "solution/solution.hpp"
 
 namespace {
 #if defined(FIB_IMPL_RECURSIVE)
