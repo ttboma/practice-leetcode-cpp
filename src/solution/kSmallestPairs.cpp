@@ -58,8 +58,9 @@ std::vector<std::vector<int>> kSmallestPairs_impl_2(std::vector<int>& nums1, std
 }
 }  // namespace
 
-/// # [373. Find K Pairs with Smallest
-/// Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/?envType=study-plan-v2&envId=top-interview-150)
+/// # 373. Find K Pairs with Smallest Sums
+///
+/// <https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/?envType=study-plan-v2&envId=top-interview-150>
 ///
 /// You are given two integer arrays <code>nums1</code> and <code>nums2</code> sorted in **non-decreasingorder**  and an
 /// integer <code>k</code>.

@@ -20,7 +20,7 @@
             "name": "debugging test_solution findKthLargest.example1",
             "program": "${workspaceFolder}/out/build/x64-Darwin-Debug/tests/solution/tests_solution",
             "args": [
-                "--gtest_filter=findKthLargest.example1",
+                "--gtest_filter=climbStairs.example1",
                 "--gtest_also_run_disabled_tests"
             ],
             "cwd": "${workspaceFolder}",
