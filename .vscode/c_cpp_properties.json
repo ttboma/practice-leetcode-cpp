@@ -3,7 +3,6 @@
     "configurations": [
         {
             "name": "CMake",
-            "configurationProvider": "ms-vscode.cmake-tools",
             "compileCommands": "${workspaceFolder}/out/build/x64-Darwin-Debug/compile_commands.json"
         }
     ]
