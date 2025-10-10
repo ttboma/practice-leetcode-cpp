@@ -46,6 +46,7 @@ int main(int argc, char* argv[]) {
         ("kSmallestPairs"      , "[373. Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("findMaximizedCapital", "[502. IPO](https://leetcode.com/problems/ipo/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("climbStairs"         , "[70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("rob"                 , "[198. House Robber](https://leetcode.com/problems/house-robber/description/?envType=study-plan-v2&envId=top-interview-150)")
     ;
     // clang-format on
 
@@ -92,6 +93,9 @@ int main(int argc, char* argv[]) {
     } else if (vm.count("climbStairs")) {
         int n = j["n"];
         std::cout << Solution{}.climbStairs(n) << std::endl;
+    } else if (vm.count("rob")) {
+        auto nums = j["nums"].get<std::vector<int>>();
+        std::cout << Solution{}.rob(nums) << std::endl;
     } else {
         return -1;
     }

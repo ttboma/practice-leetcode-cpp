@@ -123,6 +123,7 @@ class Solution {
     int findKthLargest(std::vector<int>& nums, int k);
     std::vector<std::vector<int>> kSmallestPairs(std::vector<int>& nums1, std::vector<int>& nums2, int k);
     int findMaximizedCapital(int k, int w, std::vector<int>& profits, std::vector<int>& capital);
+    int rob(std::vector<int>& nums);
 
     // Comparison utilities
    public:
