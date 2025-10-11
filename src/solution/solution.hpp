@@ -124,6 +124,7 @@ class Solution {
     std::vector<std::vector<int>> kSmallestPairs(std::vector<int>& nums1, std::vector<int>& nums2, int k);
     int findMaximizedCapital(int k, int w, std::vector<int>& profits, std::vector<int>& capital);
     int rob(std::vector<int>& nums);
+    bool wordBreak(std::string s, std::vector<std::string>& wordDict);
 
     // Comparison utilities
    public:
