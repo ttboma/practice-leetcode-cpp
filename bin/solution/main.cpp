@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
         ("findMaximizedCapital", "[502. IPO](https://leetcode.com/problems/ipo/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("climbStairs"         , "[70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("rob"                 , "[198. House Robber](https://leetcode.com/problems/house-robber/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("wordBreak"           , "[139. Word Break](https://leetcode.com/problems/word-break/description/?envType=study-plan-v2&envId=top-interview-150)")
     ;
     // clang-format on
 
@@ -96,6 +97,10 @@ int main(int argc, char* argv[]) {
     } else if (vm.count("rob")) {
         auto nums = j["nums"].get<std::vector<int>>();
         std::cout << Solution{}.rob(nums) << std::endl;
+    } else if (vm.count("wordBreak")) {
+        auto s = j["s"].get<std::string>();
+        auto wordDict = j["wordDict"].get<std::vector<std::string>>();
+        std::cout << std::boolalpha << Solution{}.wordBreak(s, wordDict) << std::endl;
     } else {
         return -1;
     }
