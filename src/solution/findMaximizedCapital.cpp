@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 /// # 502. IPO
 ///

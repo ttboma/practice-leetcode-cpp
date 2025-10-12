@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TEST(kSmallestPairs, example1) {
     std::vector<int> nums1 = {1, 7, 11};

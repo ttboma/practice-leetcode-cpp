@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 bool Solution::isSameTree(TreeNode *p, TreeNode *q) {
     auto pstk = std::vector<TreeNode *>{};

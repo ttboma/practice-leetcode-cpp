@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 bool Solution::isValid(std::string s) {
     // Assuming s only contains "(", ")", "[", "]", "{", "}"

@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 int Solution::maxSubArray(std::vector<int> &nums) {
     int max = nums[0];

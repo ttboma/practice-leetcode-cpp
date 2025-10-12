@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TEST(rob, example1) {
     Solution solution;

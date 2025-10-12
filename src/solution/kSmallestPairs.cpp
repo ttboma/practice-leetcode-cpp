@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 namespace {
 std::vector<std::vector<int>> kSmallestPairs_impl_1(std::vector<int>& nums1, std::vector<int>& nums2, int k) {

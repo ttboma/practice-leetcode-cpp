@@ -3,7 +3,7 @@
 #include <iostream>
 #include <iterator>
 #include <nlohmann/json.hpp>
-#include <solution/solution.hpp>
+#include <solution.hpp>
 #include <sstream>
 
 namespace po = boost::program_options;

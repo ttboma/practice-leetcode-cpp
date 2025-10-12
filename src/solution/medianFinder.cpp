@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 void MedianFinder::addNum(int num) {
     if (maxHeap.empty()) {

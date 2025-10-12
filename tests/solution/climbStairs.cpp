@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TEST(climbStairs, example1) {
     int n = 2;

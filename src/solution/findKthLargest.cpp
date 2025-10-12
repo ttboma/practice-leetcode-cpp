@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "solution/solution.hpp"
+#include "solution.hpp"
 #include "sort/quickSort.hpp"
 
 /// # 215. Kth Largest Element in an Array

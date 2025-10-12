@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 QuadTree::Node *QuadTree::construct(unsigned row, unsigned col, unsigned dim) {
     if (dim == 1) {

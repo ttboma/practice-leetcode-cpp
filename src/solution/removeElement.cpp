@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 int Solution::removeElement(std::vector<int> &nums, int val) {
     auto k = nums.size();

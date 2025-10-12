@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TEST(findKthLargest, example1) {
     auto nums = std::vector<int>{3, 2, 1, 5, 6, 4};

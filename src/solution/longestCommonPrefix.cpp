@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 std::string Solution::longestCommonPrefix(std::vector<std::string> &strs) {
     std::string ret;

@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TEST(MedianFinderTest, BasicFunctionality) {
     MedianFinder mf;

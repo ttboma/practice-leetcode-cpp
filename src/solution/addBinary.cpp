@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 std::string Solution::addBinary(std::string a, std::string b) {
     if (a[0] == '0') return b;

@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 int Solution::minFlipsMonoIncr(std::string s) {
     if (s.size() < 2) return 0;

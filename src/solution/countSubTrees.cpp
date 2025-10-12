@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 std::vector<int> Solution::countSubTrees(int n, std::vector<std::vector<int>> &edges, std::string labels) {
     auto ret = std::vector<int>(n, 0);

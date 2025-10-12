@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 int Solution::lengthOfLongestSubstring(std::string s) {
     if (s.size() < 2) return static_cast<int>(s.size());

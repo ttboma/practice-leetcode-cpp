@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 bool Solution::isBalanced(TreeNode *root) {
     auto check_depth = [&](TreeNode const *const v, auto &&check_depth) -> std::pair<bool, int> {

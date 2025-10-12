@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 std::vector<std::vector<int>> Solution::insert(std::vector<std::vector<int>> &intervals,
                                                std::vector<int> &newInterval) {

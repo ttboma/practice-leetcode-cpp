@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 std::vector<int> Solution::plusOne(std::vector<int> &digits) {
     for (auto it = digits.rbegin(), it_end = digits.rend(); it != it_end; ++it) {

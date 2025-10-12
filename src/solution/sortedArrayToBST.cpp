@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TreeNode *Solution::sortedArrayToBST(std::vector<int> &nums) {
     using X = std::tuple<TreeNode *, std::vector<int>::size_type, std::vector<int>::size_type>;

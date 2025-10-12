@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 int Solution::lengthOfLastWord(std::string s) {
     int gmax = 0;

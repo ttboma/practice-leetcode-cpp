@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 int Solution::searchInsert(std::vector<int> &nums, int target) {
     auto i = std::vector<int>::size_type(0);

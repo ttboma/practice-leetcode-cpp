@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 bool Solution::eq(ListNode *l1, ListNode *l2) {
     while (l1 != nullptr || l2 != nullptr) {

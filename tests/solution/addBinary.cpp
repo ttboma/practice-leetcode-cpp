@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TEST(addBinary, example1) { EXPECT_EQ(Solution{}.addBinary("11", "1"), "100"); }
 

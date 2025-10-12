@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 int Solution::minDepth(TreeNode *root) {
     using x = std::pair<TreeNode *, int>;

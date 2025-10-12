@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TEST(findMaximizedCapital, example1) {
     auto k = 2;

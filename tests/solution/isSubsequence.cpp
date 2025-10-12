@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TEST(isSubsequence, example1) {
     std::string s = "abc", t = "ahbgdc";

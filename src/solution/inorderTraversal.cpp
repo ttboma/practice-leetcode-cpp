@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 std::vector<int> Solution::inorderTraversal(TreeNode *root) {
     auto ret = std::vector<int>{};

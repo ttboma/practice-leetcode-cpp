@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 TEST(fib, example1) { EXPECT_EQ(Solution{}.fib(0), 0); }
 

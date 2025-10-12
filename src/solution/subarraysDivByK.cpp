@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 int Solution::subarraysDivByK(std::vector<int>& nums, int k) {
     auto count = 0;

@@ -1,4 +1,4 @@
-#include "solution/solution.hpp"
+#include "solution.hpp"
 
 ListNode *Solution::deleteDuplicates(ListNode *head) {
     if (head == nullptr) return head;
