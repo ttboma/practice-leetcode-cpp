@@ -48,6 +48,7 @@ int main(int argc, char* argv[]) {
         ("climbStairs"         , "[70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("rob"                 , "[198. House Robber](https://leetcode.com/problems/house-robber/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("wordBreak"           , "[139. Word Break](https://leetcode.com/problems/word-break/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("coinChange"          , "[322. Coin Change](https://leetcode.com/problems/coin-change/description/?envType=study-plan-v2&envId=top-interview-150)")
     ;
     // clang-format on
 
@@ -101,6 +102,10 @@ int main(int argc, char* argv[]) {
         auto s = j["s"].get<std::string>();
         auto wordDict = j["wordDict"].get<std::vector<std::string>>();
         std::cout << std::boolalpha << Solution{}.wordBreak(s, wordDict) << std::endl;
+    } else if (vm.count("coinChange")) {
+        auto coins = j["coins"].get<std::vector<int>>();
+        int amount = j["amount"];
+        std::cout << Solution{}.coinChange(coins, amount) << std::endl;
     } else {
         return -1;
     }

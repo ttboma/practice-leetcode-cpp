@@ -125,6 +125,7 @@ class Solution {
     int findMaximizedCapital(int k, int w, std::vector<int>& profits, std::vector<int>& capital);
     int rob(std::vector<int>& nums);
     bool wordBreak(std::string s, std::vector<std::string>& wordDict);
+    int coinChange(std::vector<int>& coins, int amount);
 
     // Comparison utilities
    public:
