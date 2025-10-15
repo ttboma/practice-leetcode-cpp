@@ -126,6 +126,7 @@ class Solution {
     int rob(std::vector<int>& nums);
     bool wordBreak(std::string s, std::vector<std::string>& wordDict);
     int coinChange(std::vector<int>& coins, int amount);
+    int uniquePathsWithObstacles(std::vector<std::vector<int>>& obstacleGrid);
 
     // Comparison utilities
    public:

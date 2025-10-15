@@ -38,17 +38,18 @@ int main(int argc, char* argv[]) {
     //  by clang-format
     // clang-format off
     desc.add_options()
-        ("help"                , "Print this message or the help of the given subcommand(s)")
-        ("fib"                 , "[509. Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)")
-        ("isSubsequence"       , "[392. Is Subsequence](https://leetcode.com/problems/is-subsequence/description/?envType=study-plan-v2&envId=top-interview-150)")
-        ("merge"               , "[88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)")
-        ("findKthLargest"      , "[215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/1783751282/?envType=study-plan-v2&envId=top-interview-150)")
-        ("kSmallestPairs"      , "[373. Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/?envType=study-plan-v2&envId=top-interview-150)")
-        ("findMaximizedCapital", "[502. IPO](https://leetcode.com/problems/ipo/description/?envType=study-plan-v2&envId=top-interview-150)")
-        ("climbStairs"         , "[70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/description/?envType=study-plan-v2&envId=top-interview-150)")
-        ("rob"                 , "[198. House Robber](https://leetcode.com/problems/house-robber/description/?envType=study-plan-v2&envId=top-interview-150)")
-        ("wordBreak"           , "[139. Word Break](https://leetcode.com/problems/word-break/description/?envType=study-plan-v2&envId=top-interview-150)")
-        ("coinChange"          , "[322. Coin Change](https://leetcode.com/problems/coin-change/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("help"                    , "Print this message or the help of the given subcommand(s)")
+        ("fib"                     , "[509. Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)")
+        ("isSubsequence"           , "[392. Is Subsequence](https://leetcode.com/problems/is-subsequence/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("merge"                   , "[88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("findKthLargest"          , "[215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/1783751282/?envType=study-plan-v2&envId=top-interview-150)")
+        ("kSmallestPairs"          , "[373. Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("findMaximizedCapital"    , "[502. IPO](https://leetcode.com/problems/ipo/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("climbStairs"             , "[70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("rob"                     , "[198. House Robber](https://leetcode.com/problems/house-robber/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("wordBreak"               , "[139. Word Break](https://leetcode.com/problems/word-break/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("coinChange"              , "[322. Coin Change](https://leetcode.com/problems/coin-change/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("uniquePathsWithObstacles", "[63. Unique Paths II](https://leetcode.com/problems/unique-paths-ii/description/?envType=study-plan-v2&envId=top-interview-150)")
     ;
     // clang-format on
 
@@ -106,6 +107,9 @@ int main(int argc, char* argv[]) {
         auto coins = j["coins"].get<std::vector<int>>();
         int amount = j["amount"];
         std::cout << Solution{}.coinChange(coins, amount) << std::endl;
+    } else if (vm.count("uniquePathsWithObstacles")) {
+        auto obstacleGrid = j["obstacleGrid"].get<std::vector<std::vector<int>>>();
+        std::cout << Solution{}.uniquePathsWithObstacles(obstacleGrid) << std::endl;
     } else {
         return -1;
     }
