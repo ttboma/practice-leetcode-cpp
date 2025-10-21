@@ -50,6 +50,7 @@ int main(int argc, char* argv[]) {
         ("wordBreak"               , "[139. Word Break](https://leetcode.com/problems/word-break/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("coinChange"              , "[322. Coin Change](https://leetcode.com/problems/coin-change/description/?envType=study-plan-v2&envId=top-interview-150)")
         ("uniquePathsWithObstacles", "[63. Unique Paths II](https://leetcode.com/problems/unique-paths-ii/description/?envType=study-plan-v2&envId=top-interview-150)")
+        ("copyRandomList"          , "[138. Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/description/?envType=study-plan-v2&envId=top-interview-150)")
     ;
     // clang-format on
 
@@ -110,6 +111,13 @@ int main(int argc, char* argv[]) {
     } else if (vm.count("uniquePathsWithObstacles")) {
         auto obstacleGrid = j["obstacleGrid"].get<std::vector<std::vector<int>>>();
         std::cout << Solution{}.uniquePathsWithObstacles(obstacleGrid) << std::endl;
+    } else if (vm.count("copyRandomList")) {
+        // Deserialize input linked list with random pointers
+        auto head = j["head"].get<std::vector<std::vector<std::string>>>();
+        RandomList original_list(head);
+        auto copied_head = Solution{}.copyRandomList(original_list.getHead());
+        RandomList copied_list(copied_head);
+        std::cout << copied_list << std::endl;
     } else {
         return -1;
     }

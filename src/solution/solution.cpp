@@ -1,6 +1,8 @@
 #include "solution.hpp"
 
-bool Solution::eq(ListNode *l1, ListNode *l2) {
+#include <sstream>
+
+bool Solution::eq(ListNode* l1, ListNode* l2) {
     while (l1 != nullptr || l2 != nullptr) {
         if (l1 == nullptr && l2 != nullptr) return false;
         if (l1 != nullptr && l2 == nullptr) return false;
@@ -11,9 +13,9 @@ bool Solution::eq(ListNode *l1, ListNode *l2) {
     return true;
 }
 
-bool Solution::eq(TreeNode *t1, TreeNode *t2) {
-    auto stack1 = std::vector<TreeNode *>{t1};
-    auto stack2 = std::vector<TreeNode *>{t2};
+bool Solution::eq(TreeNode* t1, TreeNode* t2) {
+    auto stack1 = std::vector<TreeNode*>{t1};
+    auto stack2 = std::vector<TreeNode*>{t2};
     while (!stack1.empty()) {
         auto t1 = stack1.back();
         stack1.pop_back();
@@ -38,7 +40,7 @@ bool Solution::eq(TreeNode *t1, TreeNode *t2) {
     return true;
 }
 
-bool Solution::eq(QuadTree::Node *t1, QuadTree::Node *t2) {
+bool Solution::eq(QuadTree::Node* t1, QuadTree::Node* t2) {
     if ((t1 == nullptr) ^ (t2 == nullptr)) return false;
     if (t1 == nullptr && t2 == nullptr) return true;
     if ((t1->isLeaf == true) ^ (t2->isLeaf == true)) return true;
@@ -50,4 +52,39 @@ bool Solution::eq(QuadTree::Node *t1, QuadTree::Node *t2) {
                eq(t1->bottomRight, t2->bottomRight);
     }
     return false;
+}
+
+std::ostream& operator<<(std::ostream& os, const RandomList& list) {
+    std::unordered_map<Node*, std::size_t> node_to_index;
+    std::size_t index = 0;
+    for (auto curr = list.getHead(); curr != nullptr; curr = curr->next) {
+        node_to_index[curr] = index++;
+    }
+
+    os << "[";
+    auto curr = list.getHead();
+    while (true) {
+        os << "[" << curr->val << ",";
+        if (curr->random != nullptr) {
+            os << node_to_index[curr->random];
+        } else {
+            os << "null";
+        }
+        os << "]";
+
+        curr = curr->next;
+        if (curr == nullptr) break;
+
+        os << ",";
+    }
+    os << "]";
+
+    return os;
+}
+
+bool RandomList::operator==(const RandomList& other) const {
+    std::ostringstream head_stream1, head_stream2;
+    head_stream1 << *this;
+    head_stream2 << other;
+    return head_stream1.str() == head_stream2.str();
 }
