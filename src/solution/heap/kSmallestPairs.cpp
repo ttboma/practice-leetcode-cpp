@@ -1,7 +1,8 @@
 #include "solution.hpp"
 
 namespace {
-std::vector<std::vector<int>> kSmallestPairs_impl_1(std::vector<int>& nums1, std::vector<int>& nums2, int k) {
+[[maybe_unused]] std::vector<std::vector<int>> kSmallestPairs_impl_1(std::vector<int>& nums1, std::vector<int>& nums2,
+                                                                     int k) {
     using size_t = std::vector<int>::size_type;
 
     std::vector<std::vector<int>> result;

@@ -33,7 +33,6 @@
             "hidden": false,
             "targets": [
                 "docs",
-                "pre_commit",
                 "all"
             ]
         },

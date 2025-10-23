@@ -31,6 +31,11 @@ endif()
 find_program(PRE_COMMIT_EXECUTABLE pre-commit)
 
 if (PRE_COMMIT_EXECUTABLE)
+    execute_process(
+        COMMAND pre-commit install --hook-type commit-msg --hook-type pre-commit --hook-type pre-push
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+    )
+
     # Run pre-commit on all files
     add_custom_target(pre_commit
         COMMAND ${PRE_COMMIT_EXECUTABLE} run --all-files

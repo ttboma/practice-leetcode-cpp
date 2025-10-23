@@ -2,7 +2,11 @@
 # Get all project files
 file(GLOB_RECURSE
      ALL_CXX_SOURCE_FILES
-     src/*.cpp src/*.h include/*.h include/*.hpp tests/*.cpp
+     "${CMAKE_SOURCE_DIR}/src/*.cpp"
+     "${CMAKE_SOURCE_DIR}/src/*.h"
+     "${CMAKE_SOURCE_DIR}/include/*.h"
+     "${CMAKE_SOURCE_DIR}/include/*.hpp"
+     "${CMAKE_SOURCE_DIR}/tests/*.cpp"
      )
 
 # Adding clang-format target if executable is found

@@ -37,12 +37,12 @@
 /// - <code>1 <= m, n <= 300</code>
 /// - <code>matrix[i][j]</code> is <code>'0'</code> or <code>'1'</code>.
 int Solution::maximalSquare(std::vector<std::vector<char>>& matrix) {
-    auto n = matrix.size();
-    auto m = matrix[0].size();
+    auto n = static_cast<int>(matrix.size());
+    auto m = static_cast<int>(matrix[0].size());
     std::vector<std::vector<int>> square(n, std::vector<int>(m));
     auto width = 0;
-    for (auto i = 0; i != n; ++i) {
-        for (auto j = 0; j != m; ++j) {
+    for (int i = 0; i != n; ++i) {
+        for (int j = 0; j != m; ++j) {
             if (matrix[i][j] == '1') {
                 width = 1;
                 square[i][j] = 1;
@@ -51,8 +51,8 @@ int Solution::maximalSquare(std::vector<std::vector<char>>& matrix) {
             }
         }
     }
-    for (auto i = 1; i != n; ++i) {
-        for (auto j = 1; j != m; ++j) {
+    for (int i = 1; i != n; ++i) {
+        for (int j = 1; j != m; ++j) {
             if (square[i][j] == 0)
                 continue;
             int l[] = {square[i - 1][j], square[i][j - 1], square[i - 1][j - 1]};

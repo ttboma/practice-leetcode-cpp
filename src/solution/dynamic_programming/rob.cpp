@@ -42,7 +42,7 @@ int Solution::rob(std::vector<int>& nums) {
     }
 
     int cache[] = {nums[0], std::max(nums[0], nums[1])};
-    int i = 2;
+    std::size_t i = 2;
 
     for (; i != nums.size(); ++i) {
         int a = nums[i] + cache[i % 2];

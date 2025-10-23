@@ -35,7 +35,7 @@
 /// - <code>1 <= n <= 45</code>
 int Solution::climbStairs(int n) {
     int cache[] = {1, 1};
-    for (std::size_t i = 2; i <= n; ++i) {
+    for (std::size_t i = 2; i <= static_cast<std::size_t>(n); ++i) {
         cache[i % 2] = cache[0] + cache[1];
     }
     return cache[n % 2];

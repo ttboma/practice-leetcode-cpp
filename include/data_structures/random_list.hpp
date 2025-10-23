@@ -35,7 +35,7 @@ public:
             if (items[i][1] == "null")
                 continue;
             int random_index = std::stoi(items[i][1]);
-            if (random_index < nodes.size()) {
+            if (static_cast<size_type>(random_index) < nodes.size()) {
                 nodes[i]->random = nodes[random_index];
             }
         }

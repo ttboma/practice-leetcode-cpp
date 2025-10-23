@@ -46,8 +46,8 @@ int Solution::uniquePathsWithObstacles(std::vector<std::vector<int>>& obstacleGr
     auto isObstacle = [](auto const& g) { return g == 1; };
     auto it = std::find_if(obstacleGrid[0].begin(), obstacleGrid[0].end(), isObstacle);
     std::fill(sol[0].begin(), sol[0].begin() + std::distance(obstacleGrid[0].begin(), it), 1);
-    for (auto i = 1; i != sol.size(); ++i) {
-        for (auto j = 0; j != sol[0].size(); ++j) {
+    for (int i = 1; i != static_cast<int>(sol.size()); ++i) {
+        for (int j = 0; j != static_cast<int>(sol[0].size()); ++j) {
             if (isObstacle(obstacleGrid[i][j]))
                 continue;
             sol[i][j] = (i != 0 ? sol[i - 1][j] : 0) + (j != 0 ? sol[i][j - 1] : 0);

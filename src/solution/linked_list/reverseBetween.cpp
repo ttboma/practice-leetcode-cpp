@@ -30,6 +30,6 @@
 /// - `1 <= left <= right <= n`
 ///
 /// **Follow up:**  Could you do it in one pass?
-ListNode* Solution::reverseBetween(ListNode* head, int left, int right) {
+ListNode* Solution::reverseBetween(ListNode* head, int /*left*/, int /*right*/) {
     return nullptr;
 }

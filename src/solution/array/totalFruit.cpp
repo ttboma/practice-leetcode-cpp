@@ -2,20 +2,20 @@
 
 int Solution::totalFruit(std::vector<int>& fruits) {
     if (fruits.size() < 3) {
-        return fruits.size();
+        return static_cast<int>(fruits.size());
     }
-    auto i = 1;
+    std::size_t i = 1;
     while (i != fruits.size() && fruits[i] == fruits[0]) {
         ++i;
     }
     if (i == fruits.size()) {
-        return i;
+        return static_cast<int>(i);
     }
     int bucket[2] = {fruits[0], fruits[i++]};
-    auto max = i;
-    auto cur_max = i;
+    auto max = static_cast<int>(i);
+    auto cur_max = static_cast<int>(i);
     auto conseq = 1;
-    for (auto idx = i; idx != fruits.size(); ++idx) {
+    for (std::size_t idx = i; idx != fruits.size(); ++idx) {
         if (bucket[1] == fruits[idx]) {
             cur_max = cur_max + 1;
             conseq = conseq + 1;
