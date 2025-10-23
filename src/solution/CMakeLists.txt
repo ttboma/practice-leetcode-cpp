@@ -25,7 +25,7 @@ target_include_directories(
     src_solution
     PUBLIC
     ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_SOURCE_DIR}/lib/nlohmann/json/include
+    ${CMAKE_SOURCE_DIR}/external/nlohmann/json/include
 )
 
 # link src_solution to compiler_flags
