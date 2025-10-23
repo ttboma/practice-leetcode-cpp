@@ -8,7 +8,8 @@
 // s'[i] := '_'   , if i is even
 // s'[i] := s[i/2], if is odd
 std::string ManachersAlgorithm(std::string s) {
-    if (s.size() <= 1) return s;
+    if (s.size() <= 1)
+        return s;
     if (s.size() == 2) {
         if (s[0] == s[1])
             return s;
@@ -106,4 +107,6 @@ std::string longestPalindromeDp(std::string s) {
 ///
 /// - <code>1 <= s.length <= 1000</code>
 /// - <code>s</code> consist of only digits and English letters.
-std::string Solution::longestPalindrome(std::string s) { return longestPalindromeDp(s); }
+std::string Solution::longestPalindrome(std::string s) {
+    return longestPalindromeDp(s);
+}

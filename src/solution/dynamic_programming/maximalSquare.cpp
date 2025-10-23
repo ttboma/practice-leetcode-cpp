@@ -53,7 +53,8 @@ int Solution::maximalSquare(std::vector<std::vector<char>>& matrix) {
     }
     for (auto i = 1; i != n; ++i) {
         for (auto j = 1; j != m; ++j) {
-            if (square[i][j] == 0) continue;
+            if (square[i][j] == 0)
+                continue;
             int l[] = {square[i - 1][j], square[i][j - 1], square[i - 1][j - 1]};
             square[i][j] = 1 + *std::min_element(std::begin(l), std::end(l));
             width = width < square[i][j] ? square[i][j] : width;

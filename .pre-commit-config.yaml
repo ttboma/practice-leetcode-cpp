@@ -14,10 +14,9 @@ repos:
     hooks:
       - id: clang-format
         args: [--style=file]
-      # cannot success with the following line??
-      # - id: clang-tidy
-      # - id: oclint
-      # - id: uncrustify
-      # - id: cppcheck
-      # - id: cpplint
-      # - id: include-what-you-use
+        types_or: [c++, c]
+      - id: clang-tidy
+        args: [--config-file=.clang-tidy, -p=.]
+        types_or: [c++, c]
+        # Exclude external libraries and design pattern examples
+        exclude: ^(lib/|tests/design_pattern/|src/design_pattern/)

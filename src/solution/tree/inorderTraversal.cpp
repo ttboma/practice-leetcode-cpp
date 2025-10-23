@@ -1,10 +1,11 @@
 #include "solution.hpp"
 
-std::vector<int> Solution::inorderTraversal(TreeNode *root) {
+std::vector<int> Solution::inorderTraversal(TreeNode* root) {
     auto ret = std::vector<int>{};
-    auto stk = std::vector<TreeNode *>{};
+    auto stk = std::vector<TreeNode*>{};
 
-    for (auto it = root; it != nullptr; it = it->left) stk.push_back(it);
+    for (auto it = root; it != nullptr; it = it->left)
+        stk.push_back(it);
 
     while (!stk.empty()) {
         auto in = stk.back();
@@ -12,7 +13,8 @@ std::vector<int> Solution::inorderTraversal(TreeNode *root) {
         stk.pop_back();
         in = in->right;
 
-        for (auto it = in; it != nullptr; it = it->left) stk.push_back(it);
+        for (auto it = in; it != nullptr; it = it->left)
+            stk.push_back(it);
     }
 
     return ret;

@@ -55,10 +55,10 @@
 /// - If <code>99%</code> of all integer numbers from the stream are in the range <code>[0, 100]</code>, how would you
 /// optimize your solution?
 class MedianFinder {
-   private:
+private:
     std::priority_queue<int, std::vector<int>, std::less<>> maxHeap;     // Lower half
     std::priority_queue<int, std::vector<int>, std::greater<>> minHeap;  // Upper half
-   public:
+public:
     MedianFinder() = default;
     void addNum(int num);
     double findMedian();

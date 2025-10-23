@@ -60,8 +60,10 @@ int Solution::findMaximizedCapital(int k, int w, std::vector<int>& profits, std:
 
     for (auto first = index.begin(); k > 0; --k) {
         auto p = std::upper_bound(first, index.end(), w, [&](int value, int idx) { return value < capital[idx]; });
-        while (first != p) heap.push(*first++);
-        if (heap.empty()) break;
+        while (first != p)
+            heap.push(*first++);
+        if (heap.empty())
+            break;
         w += profits[heap.top()];
         heap.pop();
     }

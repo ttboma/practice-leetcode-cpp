@@ -1,6 +1,6 @@
 #include "solution.hpp"
 
-int Solution::totalFruit(std::vector<int> &fruits) {
+int Solution::totalFruit(std::vector<int>& fruits) {
     if (fruits.size() < 3) {
         return fruits.size();
     }

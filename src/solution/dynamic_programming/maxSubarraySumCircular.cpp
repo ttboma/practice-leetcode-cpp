@@ -1,6 +1,6 @@
 #include "solution.hpp"
 
-int Solution::maxSubarraySumCircular(std::vector<int> &nums) {
+int Solution::maxSubarraySumCircular(std::vector<int>& nums) {
     int min = nums[0];
     int max = nums[0];
     int cur_min = 0;

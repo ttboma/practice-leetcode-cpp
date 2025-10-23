@@ -1,7 +1,8 @@
 #include "solution.hpp"
 
 int Solution::minFlipsMonoIncr(std::string s) {
-    if (s.size() < 2) return 0;
+    if (s.size() < 2)
+        return 0;
 
     int min_flip = 0;
     int num_one = (s[0] == '1') ? 1 : 0;

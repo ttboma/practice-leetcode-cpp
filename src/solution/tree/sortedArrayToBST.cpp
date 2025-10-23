@@ -1,9 +1,10 @@
 #include "solution.hpp"
 
-TreeNode *Solution::sortedArrayToBST(std::vector<int> &nums) {
-    using X = std::tuple<TreeNode *, std::vector<int>::size_type, std::vector<int>::size_type>;
+TreeNode* Solution::sortedArrayToBST(std::vector<int>& nums) {
+    using X = std::tuple<TreeNode*, std::vector<int>::size_type, std::vector<int>::size_type>;
 
-    if (nums.empty()) return nullptr;
+    if (nums.empty())
+        return nullptr;
 
     auto root = new TreeNode(nums[nums.size() / 2]);
 

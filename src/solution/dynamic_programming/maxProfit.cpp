@@ -1,6 +1,6 @@
 #include "solution.hpp"
 
-int Solution::maxProfit(std::vector<int> &prices) {
+int Solution::maxProfit(std::vector<int>& prices) {
     int profit = 0;
     for (unsigned i = 1; i != prices.size(); ++i) {
         auto diff = prices[i] - prices[i - 1];

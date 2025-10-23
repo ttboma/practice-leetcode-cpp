@@ -1,9 +1,9 @@
 #include "solution.hpp"
 
-ListNode *Solution::addTwoNumbers(ListNode *l1, ListNode *l2) {
+ListNode* Solution::addTwoNumbers(ListNode* l1, ListNode* l2) {
     int carry = 0;
-    ListNode *head = new ListNode(-1);
-    ListNode *it = head;
+    ListNode* head = new ListNode(-1);
+    ListNode* it = head;
 
     while (l1 != nullptr or l2 != nullptr or carry != 0) {
         it->next = new ListNode(carry);

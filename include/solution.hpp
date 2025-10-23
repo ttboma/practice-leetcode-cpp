@@ -22,7 +22,7 @@
 
 class Solution {
     // Methods
-   public:
+public:
     // Linked List
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2);
@@ -90,7 +90,7 @@ class Solution {
     int findMaximizedCapital(int k, int w, std::vector<int>& profits, std::vector<int>& capital);
 
     // Comparison utilities
-   public:
+public:
     static bool eq(ListNode* l1, ListNode* l2);
     static bool eq(TreeNode* t1, TreeNode* t2);
     static bool eq(QuadTree::Node* t1, QuadTree::Node* t2);

@@ -1,7 +1,7 @@
 #include "solution.hpp"
 
-bool Solution::isBalanced(TreeNode *root) {
-    auto check_depth = [&](TreeNode const *const v, auto &&check_depth) -> std::pair<bool, int> {
+bool Solution::isBalanced(TreeNode* root) {
+    auto check_depth = [&](TreeNode const* const v, auto&& check_depth) -> std::pair<bool, int> {
         if (v == nullptr)
             return std::pair<bool, int>{true, 0};
         else {

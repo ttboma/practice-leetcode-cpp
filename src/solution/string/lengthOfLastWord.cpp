@@ -7,7 +7,8 @@ int Solution::lengthOfLastWord(std::string s) {
         if (s[i] != ' ') {
             ++lmax;
         } else {
-            if (lmax != 0) gmax = lmax;
+            if (lmax != 0)
+                gmax = lmax;
             lmax = 0;
         }
     }

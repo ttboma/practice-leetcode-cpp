@@ -1,9 +1,10 @@
 #include "solution.hpp"
 
-int Solution::minDepth(TreeNode *root) {
-    using x = std::pair<TreeNode *, int>;
+int Solution::minDepth(TreeNode* root) {
+    using x = std::pair<TreeNode*, int>;
 
-    if (root == nullptr) return 0;
+    if (root == nullptr)
+        return 0;
 
     auto Q = std::queue<x>();
 
@@ -23,7 +24,8 @@ int Solution::minDepth(TreeNode *root) {
             isleaf = false;
             Q.push({f.first->right, f.second + 1});
         }
-        if (isleaf) return f.second;
+        if (isleaf)
+            return f.second;
     }
 
     return -1;

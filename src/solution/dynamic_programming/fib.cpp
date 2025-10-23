@@ -11,7 +11,7 @@ int fib(int n) {
     return fib(n - 1) + fib(n - 2);
 }
 #elif defined(FIB_IMPL_RECURSIVE_PRUNE_WITH_CACHE)
-#include <vector>
+    #include <vector>
 int fib_cache(int n, std::vector<int>& cache) {
     if (n < cache.size()) {
         return cache[n];
@@ -31,14 +31,14 @@ class memoize_recursive_helper;
 
 template <class Result, class... Args, class F>
 class memoize_recursive_helper<Result(Args...), F> {
-   private:
+private:
     using args_tuple_type = std::tuple<std::decay_t<Args>...>;
 
     F f;
     mutable std::map<args_tuple_type, Result> m_cache;
     mutable std::recursive_mutex m_cache_mutex;
 
-   public:
+public:
     template <typename Function>
     explicit memoize_recursive_helper(Function&& f_) : f(std::forward<Function>(f_)) {}
 
@@ -59,11 +59,12 @@ class memoize_recursive_helper<Result(Args...), F> {
 
 template <class Sig, class F>
 auto make_memoized_r(F&& f) {
-    return memoize_recursive_helper<Sig, std::decay_t<F> >(std::forward<F>(f));
+    return memoize_recursive_helper<Sig, std::decay_t<F>>(std::forward<F>(f));
 }
 #elif defined(FIB_IMPL_TAIL_RECURSIVE)
 int fib_start_with(int n, int prev, int curr) {
-    if (n == 0) return prev;
+    if (n == 0)
+        return prev;
     return fib_start_with(n - 1, curr, prev + curr);
 }
 
@@ -84,8 +85,10 @@ int fib(int n) {
 }
 #elif defined(FIB_IMPL_DYNAMIC_PROGRAMMING)
 int fib(int n) {
-    if (n == 0) return 0;
-    if (n == 1) return 1;
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
     int prev = 0, curr = 1;
     for (int i = 2; i <= n; i++) {
         int next = prev + curr;
@@ -156,6 +159,6 @@ int Solution::fib(int n) {
 #elif defined(FIB_IMPL_DYNAMIC_PROGRAMMING)
     return ::fib(n);
 #else
-#error "No FIB_IMPL_* defined"
+    #error "No FIB_IMPL_* defined"
 #endif
 }

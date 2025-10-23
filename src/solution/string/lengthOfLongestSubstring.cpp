@@ -1,7 +1,8 @@
 #include "solution.hpp"
 
 int Solution::lengthOfLongestSubstring(std::string s) {
-    if (s.size() < 2) return static_cast<int>(s.size());
+    if (s.size() < 2)
+        return static_cast<int>(s.size());
 
     // The max sliding window [i, i +j)
     auto max_sw = std::pair<std::size_t, std::size_t>{0, 1};

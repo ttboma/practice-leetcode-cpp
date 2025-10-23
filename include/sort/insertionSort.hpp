@@ -5,7 +5,8 @@
 
 template <typename RandomAccessIterator, typename Cmp>
 void binaryInsertionSort(RandomAccessIterator first, RandomAccessIterator last, Cmp cmp) {
-    if (first == last) return;
+    if (first == last)
+        return;
     for (auto it = first + 1; it != last; ++it) {
         auto current = *it;
 
@@ -22,7 +23,8 @@ void binaryInsertionSort(RandomAccessIterator first, RandomAccessIterator last, 
 
 template <typename RandomAccessIterator, typename Cmp>
 void insertionSort(RandomAccessIterator first, RandomAccessIterator last, Cmp cmp) {
-    if (first == last) return;
+    if (first == last)
+        return;
     for (auto it = first + 1; it != last; ++it) {
         auto current = *it;
 

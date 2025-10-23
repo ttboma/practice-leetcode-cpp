@@ -1,7 +1,8 @@
 #include "solution.hpp"
 
-ListNode *Solution::deleteDuplicates(ListNode *head) {
-    if (head == nullptr) return head;
+ListNode* Solution::deleteDuplicates(ListNode* head) {
+    if (head == nullptr)
+        return head;
 
     auto it = head;
     int val = it->val;

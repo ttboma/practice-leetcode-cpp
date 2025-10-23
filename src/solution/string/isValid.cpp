@@ -6,7 +6,7 @@ bool Solution::isValid(std::string s) {
 
     std::vector<char> stack;
 
-    for (auto const &b : s) {
+    for (auto const& b : s) {
         if (b == ')') {
             if (stack.empty() || stack.back() != '(')
                 return false;

@@ -1,6 +1,6 @@
 #include "solution.hpp"
 
-int Solution::removeDuplicates(std::vector<int> &nums) {
+int Solution::removeDuplicates(std::vector<int>& nums) {
     if (nums.size() == 0) {
         return 0;
     }

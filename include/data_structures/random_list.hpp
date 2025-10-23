@@ -6,7 +6,7 @@
 #include <vector>
 
 class Node {
-   public:
+public:
     int val;
     Node* next;
     Node* random;
@@ -19,10 +19,10 @@ class Node {
 };
 
 class RandomList {
-   public:
+public:
     using size_type = std::size_t;
 
-   public:
+public:
     RandomList(Node* head) : head(head) {}
     RandomList(std::vector<std::vector<std::string>> items) {
         std::vector<Node*> nodes;
@@ -32,7 +32,8 @@ class RandomList {
             nodes.push_back(node);
         }
         for (std::vector<Node*>::size_type i = 0; i != items.size(); ++i) {
-            if (items[i][1] == "null") continue;
+            if (items[i][1] == "null")
+                continue;
             int random_index = std::stoi(items[i][1]);
             if (random_index < nodes.size()) {
                 nodes[i]->random = nodes[random_index];
@@ -58,12 +59,12 @@ class RandomList {
 
     bool operator==(const RandomList& other) const;
 
-   public:
+public:
     // overload operators ==
     bool empty() const { return head == nullptr; }
     Node* getHead() const { return head; }
 
-   private:
+private:
     Node* head;
 };
 

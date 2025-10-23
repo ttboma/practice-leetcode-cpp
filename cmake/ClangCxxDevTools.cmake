@@ -2,7 +2,7 @@
 # Get all project files
 file(GLOB_RECURSE
      ALL_CXX_SOURCE_FILES
-     src/*.cpp include/*.h tests/*.cpp
+     src/*.cpp src/*.h include/*.h include/*.hpp tests/*.cpp
      )
 
 # Adding clang-format target if executable is found
@@ -10,26 +10,26 @@ find_program(CLANG_FORMAT "clang-format")
 if(CLANG_FORMAT)
   add_custom_target(
     clang-format
-    COMMAND clang-format
+    COMMAND ${CLANG_FORMAT}
     -i
-    -style=Google
+    -style=file
     ${ALL_CXX_SOURCE_FILES}
+    COMMENT "Running clang-format on all source files"
     )
 endif()
-
-set(INCLUDE_DIRECTORIES include/leetcode_cpp)
 
 # Adding clang-tidy target if executable is found
 find_program(CLANG_TIDY "clang-tidy")
 if(CLANG_TIDY)
   add_custom_target(
     clang-tidy
-    COMMAND clang-tidy
+    COMMAND ${CLANG_TIDY}
     ${ALL_CXX_SOURCE_FILES}
-    -config=''
-    --checks=performance-*
+    --config-file=${CMAKE_SOURCE_DIR}/.clang-tidy
     --
     -std=c++20
-    ${INCLUDE_DIRECTORIES}
+    -I${CMAKE_SOURCE_DIR}/include
+    COMMENT "Running clang-tidy on all source files"
+    VERBATIM
     )
 endif()

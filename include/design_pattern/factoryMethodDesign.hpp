@@ -66,52 +66,52 @@
 
 // Define the abstract product class
 class Shape {
-   public:
+public:
     virtual void draw() const = 0;
     virtual ~Shape() = default;
 };
 
 // TODO: Define concrete product classes
 class Circle : public Shape {
-   public:
+public:
     void draw() const override;
     ~Circle() override = default;
 };
 
 class Rectangle : public Shape {
-   public:
+public:
     void draw() const override;
     ~Rectangle() override = default;
 };
 
 class Triangle : public Shape {
-   public:
+public:
     void draw() const override;
     ~Triangle() override = default;
 };
 
 // Define the abstract creator
 class ShapeFactory {
-   public:
+public:
     virtual std::unique_ptr<Shape> createShape() const = 0;
     virtual ~ShapeFactory() = default;
 };
 
 // TODO: Define concrete creators
 class CircleFactory : public ShapeFactory {
-   public:
+public:
     std::unique_ptr<Shape> createShape() const override;
     ~CircleFactory() override = default;
 };
 
 class RectangleFactory : public ShapeFactory {
-   public:
+public:
     std::unique_ptr<Shape> createShape() const override;
     ~RectangleFactory() override = default;
 };
 
 class TriangleFactory : public ShapeFactory {
-   public:
+public:
     std::unique_ptr<Shape> createShape() const override;
     ~TriangleFactory() override = default;
 };

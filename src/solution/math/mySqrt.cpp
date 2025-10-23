@@ -31,7 +31,8 @@
 ///
 /// - <code>0 <= x <= 2^31 - 1</code>
 int Solution::mySqrt(int x) {
-    if (x == 0 || x == 1) return x;
+    if (x == 0 || x == 1)
+        return x;
 
     int first{1}, last{x / 2 + 1};
     int count = last - first;

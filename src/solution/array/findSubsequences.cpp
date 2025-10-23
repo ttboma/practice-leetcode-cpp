@@ -1,9 +1,9 @@
 #include "solution.hpp"
 
-std::vector<std::vector<int>> Solution::findSubsequences(std::vector<int> &nums) {
+std::vector<std::vector<int>> Solution::findSubsequences(std::vector<int>& nums) {
     std::set<std::vector<int>> result;
     std::vector<int> sequence;
-    auto backtrack = [&](int index, auto &&backtrack) -> void {
+    auto backtrack = [&](int index, auto&& backtrack) -> void {
         // if we have checked all elements
         if (index == nums.size()) {
             if (sequence.size() >= 2) {

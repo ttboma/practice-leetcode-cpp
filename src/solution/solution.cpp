@@ -4,9 +4,12 @@
 
 bool Solution::eq(ListNode* l1, ListNode* l2) {
     while (l1 != nullptr || l2 != nullptr) {
-        if (l1 == nullptr && l2 != nullptr) return false;
-        if (l1 != nullptr && l2 == nullptr) return false;
-        if (l1->val != l2->val) return false;
+        if (l1 == nullptr && l2 != nullptr)
+            return false;
+        if (l1 != nullptr && l2 == nullptr)
+            return false;
+        if (l1->val != l2->val)
+            return false;
         l1 = l1->next;
         l2 = l2->next;
     }
@@ -41,11 +44,15 @@ bool Solution::eq(TreeNode* t1, TreeNode* t2) {
 }
 
 bool Solution::eq(QuadTree::Node* t1, QuadTree::Node* t2) {
-    if ((t1 == nullptr) ^ (t2 == nullptr)) return false;
-    if (t1 == nullptr && t2 == nullptr) return true;
-    if ((t1->isLeaf == true) ^ (t2->isLeaf == true)) return true;
+    if ((t1 == nullptr) ^ (t2 == nullptr))
+        return false;
+    if (t1 == nullptr && t2 == nullptr)
+        return true;
+    if ((t1->isLeaf == true) ^ (t2->isLeaf == true))
+        return true;
     if ((t1->isLeaf == true) && (t2->isLeaf == true)) {
-        if (t1->val != t2->val) return false;
+        if (t1->val != t2->val)
+            return false;
         return true;
     } else {
         return eq(t1->topLeft, t2->topLeft) && eq(t1->topRight, t2->topRight) && eq(t1->bottomLeft, t2->bottomLeft) &&
@@ -73,7 +80,8 @@ std::ostream& operator<<(std::ostream& os, const RandomList& list) {
         os << "]";
 
         curr = curr->next;
-        if (curr == nullptr) break;
+        if (curr == nullptr)
+            break;
 
         os << ",";
     }

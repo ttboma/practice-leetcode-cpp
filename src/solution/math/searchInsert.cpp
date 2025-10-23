@@ -1,6 +1,6 @@
 #include "solution.hpp"
 
-int Solution::searchInsert(std::vector<int> &nums, int target) {
+int Solution::searchInsert(std::vector<int>& nums, int target) {
     auto i = std::vector<int>::size_type(0);
     auto j = nums.size();
 

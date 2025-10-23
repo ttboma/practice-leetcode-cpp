@@ -76,7 +76,8 @@ Node* Solution::copyRandomList(Node* head) {
 
     for (auto curr = head, copied_curr = new_head; curr != nullptr;
          curr = curr->next, copied_curr = copied_curr->next) {
-        if (curr->random == nullptr) continue;
+        if (curr->random == nullptr)
+            continue;
         copied_curr->random = visited[curr->random];
     }
 

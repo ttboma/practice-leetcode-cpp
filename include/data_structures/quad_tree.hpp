@@ -5,7 +5,7 @@
 struct QuadTree {
     // Definition for a QuadTree node.
     class Node {
-       public:
+    public:
         bool val;
         bool isLeaf;
         Node* topLeft;

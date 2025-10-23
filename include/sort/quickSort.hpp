@@ -5,7 +5,8 @@
 
 template <typename RandomAccessIterator, typename Cmp>
 void quickSort(RandomAccessIterator first, RandomAccessIterator last, Cmp cmp) {
-    if (first == last) return;
+    if (first == last)
+        return;
 
     // More balanced pivot selection for a sorted range
     auto pivot = *std::next(first, std::distance(first, last) / 2);
@@ -20,7 +21,8 @@ void quickSort(RandomAccessIterator first, RandomAccessIterator last, Cmp cmp) {
 
 template <typename RandomAccessIterator, typename Cmp, typename IdxType>
 RandomAccessIterator quickSelect(RandomAccessIterator first, RandomAccessIterator last, Cmp cmp, IdxType k) {
-    if (first == last) return first;
+    if (first == last)
+        return first;
 
     auto pivot = *std::next(first, std::distance(first, last) / 2);
 

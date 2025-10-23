@@ -49,15 +49,18 @@
 /// - <code>pos</code> is <code>-1</code> or a **valid index**  in the linked-list.
 ///
 /// **Follow up:**  Can you solve it using <code>O(1)</code> (i.e. constant) memory?
-bool Solution::hasCycle(ListNode *head) {
-    ListNode *slow = head;
-    if (slow == nullptr) return false;
+bool Solution::hasCycle(ListNode* head) {
+    ListNode* slow = head;
+    if (slow == nullptr)
+        return false;
 
-    ListNode *fast = slow->next;
+    ListNode* fast = slow->next;
     while (fast != slow) {
-        if (fast == nullptr) return false;
+        if (fast == nullptr)
+            return false;
         fast = fast->next;
-        if (fast == nullptr) return false;
+        if (fast == nullptr)
+            return false;
         fast = fast->next;
         slow = slow->next;
     }

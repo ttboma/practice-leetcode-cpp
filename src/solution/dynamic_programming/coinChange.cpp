@@ -3,7 +3,8 @@
 enum class Color { White, Grey, Black };
 
 int Solution::coinChange(std::vector<int>& coins, int amount) {
-    if (amount == 0) return 0;
+    if (amount == 0)
+        return 0;
 
     std::unordered_map<int, Color> status;
     std::deque<int> queue;
@@ -35,7 +36,8 @@ int Solution::coinChange(std::vector<int>& coins, int amount) {
             }
             status[f] = Color::Black;
         }
-        if (amount <= *min_acc) return -1;
+        if (amount <= *min_acc)
+            return -1;
         queue = std::move(next_queue);
         ++depth;
     }

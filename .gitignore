@@ -5,3 +5,6 @@
 #/.vscode
 
 /.venv
+
+# Symlink to compile_commands.json (generated from CMake)
+/compile_commands.json

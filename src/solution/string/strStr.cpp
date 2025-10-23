@@ -1,8 +1,9 @@
 #include "solution.hpp"
 
 // KMP (Knuth-Morris-Pratt) algorithm
-std::vector<std::string::size_type> kmp(const std::string &p) {
-    if (p.size() == 0) return std::vector<std::string::size_type>{};
+std::vector<std::string::size_type> kmp(const std::string& p) {
+    if (p.size() == 0)
+        return std::vector<std::string::size_type>{};
 
     auto r = std::vector<std::string::size_type>{0};
     for (std::string::size_type i = 1, i_end = p.size(); i != i_end; ++i) {
@@ -31,7 +32,8 @@ int Solution::strStr(std::string haystack, std::string needle) {
                 j = lps[j - 1];
         else {
             ++i;
-            if (++j == needle.size()) return static_cast<int>(i - j);
+            if (++j == needle.size())
+                return static_cast<int>(i - j);
         }
     }
     return -1;
