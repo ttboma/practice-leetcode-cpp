@@ -195,6 +195,7 @@ class Solution {
     int uniquePathsWithObstacles(std::vector<std::vector<int>>& obstacleGrid);
     int maximalSquare(std::vector<std::vector<char>>& matrix);
     Node* copyRandomList(Node* head);
+    std::string dayOfTheWeek(int day, int month, int year);
 
     // Comparison utilities
    public:
