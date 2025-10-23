@@ -6,6 +6,24 @@
     - [Build on MacOS with Single-Configuration Generator (Unix Makefiles)](#build-on-macos-with-single-configuration-generator-unix-makefiles)
     - [Build on Windows with Multi-Configuration Generator (Visual Studio 17 2022)](#build-on-windows-with-multi-configuration-generator-visual-studio-17-2022)
     - [Having Problem of Building on Windows with Clang](#having-problem-of-building-on-windows-with-clang)
+  - [Project Architecture](#project-architecture)
+    - [Directory Structure](#directory-structure)
+    - [Build System Architecture](#build-system-architecture)
+    - [Code Organization](#code-organization)
+      - [Solution Pattern](#solution-pattern)
+      - [Data Structures](#data-structures)
+    - [Suggestions for Improvement](#suggestions-for-improvement)
+      - [1. **Separate Header Files per Problem**](#1-separate-header-files-per-problem)
+      - [2. **Categorize Solutions by Topic**](#2-categorize-solutions-by-topic)
+      - [3. **Add Problem Metadata**](#3-add-problem-metadata)
+      - [4. **Improve Test Coverage**](#4-improve-test-coverage)
+      - [5. **Add Continuous Integration**](#5-add-continuous-integration)
+      - [6. **Performance Benchmarking**](#6-performance-benchmarking)
+      - [7. **Better CLI Experience**](#7-better-cli-experience)
+      - [8. **Documentation Generation Improvements**](#8-documentation-generation-improvements)
+      - [9. **CMake Modern Practices**](#9-cmake-modern-practices)
+      - [10. **Add Solution Templates**](#10-add-solution-templates)
+    - [Summary](#summary)
   - [Development Note](#development-note)
   - [To Do](#to-do)
 
@@ -188,6 +206,246 @@ CreateProcessA() Windows API failed: 2 - 系統找不到指定的檔案。
 ...skipped 36 targets...
 ...updated 17123 targets...
 ```
+
+## Project Architecture
+
+### Directory Structure
+
+```text
+leetcode_cpp/
+├── bin/                    # Executable applications
+│   └── solution/           # Main solution runner with CLI
+├── src/                    # Source code libraries
+│   ├── solution/           # LeetCode problem implementations
+│   └── design_pattern/     # Design pattern examples
+├── tests/                  # Unit tests (Google Test)
+│   ├── solution/           # Tests for LeetCode solutions
+│   └── design_pattern/     # Tests for design patterns
+├── include/                # Public header files
+│   └── solution.hpp        # Main solution class and data structures
+├── docs/                   # Documentation
+│   ├── README.md           # This file
+│   └── Doxyfile            # Doxygen configuration
+├── cmake/                  # CMake modules and utilities
+│   ├── FindDependency.cmake      # Dependency management
+│   ├── ClangCxxDevTools.cmake    # Clang tooling setup
+│   └── RequireOutOfSourceBuilds.cmake
+├── .vscode/                # VS Code workspace settings
+├── CMakeLists.txt          # Root CMake configuration
+└── CMakePresets.json       # CMake workflow presets
+```
+
+### Build System Architecture
+
+The project uses **modern CMake** (3.25+) with the following design principles:
+
+1. **Modular Structure**: Each directory has its own `CMakeLists.txt`, creating distinct library targets
+   - `src_solution`: Shared library containing all LeetCode solutions
+   - `src_design_pattern`: Shared library for design pattern implementations
+   - `bin_solution`: Executable CLI tool linking to solution libraries
+   - `tests_solution` & `tests_design_pattern`: Test executables
+
+2. **Interface Library Pattern**: The `compiler_flags` interface library propagates C++20 requirements and compiler warnings to all targets
+
+3. **Dependency Management**:
+   - **Boost**: For program options in CLI tool
+   - **Google Test**: Either system-installed or fetched automatically via `FetchContent`
+   - **Doxygen**: Optional, for documentation generation
+
+4. **Cross-Platform Support**:
+   - Unix Makefiles for macOS/Linux (single-configuration)
+   - Visual Studio generators for Windows (multi-configuration)
+   - CMake presets for standardized workflows (`x64-Darwin-Debug`, `x64-Darwin-Release`)
+
+### Code Organization
+
+#### Solution Pattern
+
+Each LeetCode problem follows a consistent pattern:
+
+- **Implementation**: `src/solution/problemName.cpp` - Contains the solution method(s)
+- **Test**: `tests/solution/problemName.cpp` - Contains Google Test cases
+- **Declaration**: `include/solution.hpp` - Public interface via `Solution` class
+
+All solutions are methods of a single `Solution` class, making them easy to discover and test individually.
+
+#### Data Structures
+
+Common data structures (`ListNode`, `TreeNode`, `Node`, etc.) are defined in `solution.hpp` and shared across all solutions.
+
+### Suggestions for Improvement
+
+#### 1. **Separate Header Files per Problem**
+
+**Current Issue**: The monolithic `solution.hpp` (266+ lines) contains all problem declarations, making it harder to maintain and increasing compilation dependencies.
+
+**Recommendation**:
+
+```text
+include/
+├── solution/
+│   ├── addBinary.hpp
+│   ├── fib.hpp
+│   ├── dayOfTheWeek.hpp
+│   └── ...
+├── data_structures/
+│   ├── list_node.hpp
+│   ├── tree_node.hpp
+│   └── ...
+└── solution.hpp  # Main header that includes necessary sub-headers
+```
+
+**Benefits**: Faster compilation, clearer dependencies, easier to navigate
+
+#### 2. **Categorize Solutions by Topic**
+
+**Current Issue**: 50+ solutions in a flat directory structure make it difficult to find related problems.
+
+**Recommendation**:
+
+```text
+src/solution/
+├── array/
+│   ├── removeDuplicates.cpp
+│   ├── maxSubArray.cpp
+│   └── ...
+├── dynamic_programming/
+│   ├── fib.cpp
+│   ├── climbStairs.cpp
+│   ├── rob.cpp
+│   └── ...
+├── linked_list/
+│   ├── mergeTwoLists.cpp
+│   ├── hasCycle.cpp
+│   └── ...
+└── tree/
+    ├── maxDepth.cpp
+    ├── isBalanced.cpp
+    └── ...
+```
+
+**Benefits**: Better organization, easier to study problems by category, clearer learning path
+
+#### 3. **Add Problem Metadata**
+
+**Recommendation**: Create a `problems.json` or use Doxygen tags to track:
+
+- LeetCode problem number
+- Difficulty level (Easy/Medium/Hard)
+- Problem categories/tags
+- Time/space complexity
+- Related problems
+
+Example in Doxygen:
+
+```cpp
+/**
+ * @brief Day of the Week (LeetCode #1185)
+ * @difficulty Easy
+ * @topics Math, Array
+ * @leetcode https://leetcode.com/problems/day-of-the-week/
+ * @complexity Time: O(1), Space: O(1)
+ */
+std::string dayOfTheWeek(int day, int month, int year);
+```
+
+#### 4. **Improve Test Coverage**
+
+**Current Observation**: Only ~18 test files for 50+ solution implementations.
+
+**Recommendation**:
+
+- Aim for 100% test coverage
+- Add edge case tests (empty inputs, boundary values, large inputs)
+- Use parameterized tests for multiple test cases
+- Add performance benchmarks for time-critical solutions
+
+#### 5. **Add Continuous Integration**
+
+**Recommendation**: Set up GitHub Actions for:
+
+- Automated builds on multiple platforms (Ubuntu, macOS, Windows)
+- Run all tests on every commit
+- Code coverage reports
+- Clang-tidy static analysis
+- Format checking with clang-format
+
+Example workflow:
+
+```yaml
+.github/workflows/
+├── build-and-test.yml
+├── code-coverage.yml
+└── static-analysis.yml
+```
+
+#### 6. **Performance Benchmarking**
+
+**Recommendation**: Add Google Benchmark integration to measure:
+
+- Execution time for different input sizes
+- Memory usage
+- Comparison between different solution approaches
+
+#### 7. **Better CLI Experience**
+
+**Current**: `bin/solution.cpp` likely runs specific solutions
+
+**Recommendation**: Enhance the CLI tool to:
+
+- List all available problems
+- Filter by difficulty/category
+- Run custom test inputs
+- Show solution explanations
+- Display time/space complexity
+
+Example usage:
+
+```bash
+./solution list --difficulty=medium --category=dp
+./solution run fib --input=10
+./solution test dayOfTheWeek
+./solution info --problem=climbStairs
+```
+
+#### 8. **Documentation Generation Improvements**
+
+**Current**: Doxygen generates API docs
+
+**Recommendation**:
+
+- Add a solutions index page with problem summaries
+- Include algorithm explanations and approach notes
+- Add complexity analysis to each solution
+- Consider Sphinx + Breathe for richer documentation (as noted in TODO)
+
+#### 9. **CMake Modern Practices**
+
+**Recommendations**:
+
+- Use `target_sources()` instead of globbing for explicit source lists
+- Add `PRIVATE`/`PUBLIC`/`INTERFACE` keywords consistently for better encapsulation
+- Consider using CMake's `FetchContent` for Boost on Windows to avoid version conflicts
+- Add a `version.hpp.in` for version information
+
+#### 10. **Add Solution Templates**
+
+**Recommendation**: Create scripts/templates for adding new problems:
+
+```bash
+./scripts/add_problem.sh mergeSortedArray array easy 88
+```
+
+This would generate:
+
+- `src/solution/array/mergeSortedArray.cpp` with boilerplate
+- `tests/solution/mergeSortedArray.cpp` with test template
+- Update `solution.hpp` with declaration
+- Update CMakeLists.txt
+
+### Summary
+
+This project demonstrates solid C++ practices with modern CMake, good testing infrastructure, and cross-platform support. The suggested improvements focus on scalability, maintainability, and developer experience as the solution collection grows.
 
 ## Development Note
 

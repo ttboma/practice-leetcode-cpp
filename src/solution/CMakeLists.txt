@@ -1,6 +1,13 @@
-file(
-    GLOB src_solution_cpps
-    *.cpp
+# Collect all source files from subdirectories
+file(GLOB_RECURSE src_solution_cpps
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/array/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/string/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/linked_list/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tree/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/dynamic_programming/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/math/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/heap/*.cpp
 )
 
 add_library(
