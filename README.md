@@ -74,6 +74,10 @@ All development tools are automatically installed in `.venv/` when running `./sc
 - **Doxygen** (≥ 1.9.0): Documentation generator (optional)
   - Required only if generating documentation
 
+### IDE Support
+
+The build system automatically creates a `compile_commands.json` symlink for IntelliSense support that points to the most recent build. VS Code configurations are provided for each platform (macOS, Linux, Windows).
+
 ## Build, Test, Docs and Install
 
 The project supports cross-platform builds on macOS, Linux, and Windows.

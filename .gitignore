@@ -9,6 +9,8 @@ CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 CTestTestfile.cmake
+
+# IDE support files (symlinks, not committed)
 compile_commands.json
 
 # IDE specific
