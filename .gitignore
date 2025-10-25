@@ -1,10 +1,87 @@
-/out
+# Build output directories
+out/
+build/
+build-*/
+.venv/
 
-# The reason we don't ignore /.vscode is that we want to keep our VsCode settings
-# and configurations for future reference.
-#/.vscode
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+compile_commands.json
 
-/.venv
+# IDE specific
+.vscode/
+!.vscode/c_cpp_properties.json
+.idea/
+*.swp
+*.swo
+*~
 
-# Symlink to compile_commands.json (generated from CMake)
-/compile_commands.json
+# Compiled Object files
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# macOS
+.DS_Store
+
+# Windows
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.vcxproj.filters
+*.vcxproj.user
+.vs/
+x64/
+x86/
+Debug/
+Release/
+RelWithDebInfo/
+MinSizeRel/
+
+# Visual Studio
+*.aps
+*.ncb
+*.opendb
+*.ipch
+*.idb
+*.pdb
+*.ilk
+*.meta
+*.obj
+*.pch
+*.tlog
+*.log
+*.manifest
+*.res
+*.rc
+*.suo
+*.user
+*.vcproj
+*.vcxproj.user
+*.vcxproj.filters
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class

@@ -8,7 +8,9 @@
     - [Development Tools (Installed in Virtual Environment)](#development-tools-installed-in-virtual-environment)
     - [Documentation](#documentation)
   - [Build, Test, Docs and Install](#build-test-docs-and-install)
-    - [build.sh Options](#buildsh-options)
+    - [Quick Start](#quick-start)
+    - [build.sh Options (macOS/Linux)](#buildsh-options-macoslinux)
+    - [build.bat Options (Windows)](#buildbat-options-windows)
     - [Examples](#examples)
   - [Running Individual Tests](#running-individual-tests)
     - [Running Code Quality Tools](#running-code-quality-tools)
@@ -43,7 +45,10 @@ This project is a collection of solutions to LeetCode problems provided by ***SH
 
 ### Required
 
-- **C++20 Compiler**: AppleClang, GCC, or Clang with C++20 support
+- **C++20 Compiler**:
+  - **macOS**: AppleClang (Xcode Command Line Tools)
+  - **Linux**: GCC ≥ 10 or Clang ≥ 11
+  - **Windows**: Visual Studio 2022 with C++ tools, MinGW-w64, or Clang
 - **CMake** (≥ 3.25): Build system generator
 - **Python** (≥ 3.8): For development tools (pre-commit, clang-format, clang-tidy)
 
@@ -71,7 +76,11 @@ All development tools are automatically installed in `.venv/` when running `./sc
 
 ## Build, Test, Docs and Install
 
-The easiest way to build the project is using the `build.sh` script:
+The project supports cross-platform builds on macOS, Linux, and Windows.
+
+### Quick Start
+
+**On macOS/Linux**:
 
 ```bash
 # Simple release build
@@ -93,25 +102,65 @@ The easiest way to build the project is using the `build.sh` script:
 ./build.sh --tests-only
 ```
 
+**On Windows**:
+
+```cmd
+REM Simple release build
+build.bat
+
+REM Clean debug build with tests
+build.bat --clean -t Debug -r
+
+REM Build with 8 parallel jobs and verbose output
+build.bat -j 8 -v
+
+REM Build and open documentation
+build.bat --open-docs
+
+REM Build and install to custom location
+build.bat -i C:\local
+
+REM Just run tests
+build.bat --tests-only
+```
+
 **Before first use**, the script will automatically:
 
 - Check for required dependencies (CMake, C++ compiler)
 - Warn if Doxygen is not found
-- Create a Python virtual environment (`.venv/`)
-- Install pre-commit, clang-format, and clang-tidy
-- Set up pre-commit hooks
+- Create a Python virtual environment (`.venv/`) (Unix systems only)
+- Install pre-commit, clang-format, and clang-tidy (Unix systems only)
+- Set up pre-commit hooks (Unix systems only)
 
-### build.sh Options
+### build.sh Options (macOS/Linux)
 
 ```text
 OPTIONS:
     -h, --help              Show this help message
     -c, --clean             Clean build (remove build directory first)
     -t, --type TYPE         Build type: Debug, Release, RelWithDebInfo, MinSizeRel (default: Release)
-    -d, --build-dir DIR     Build directory (default: ${sourceDir}/out/build/${presetName})
+    -d, --build-dir DIR     Build directory (default: ${sourceDir}/out/build/${BUILD_TYPE})
     -j, --jobs N            Number of parallel jobs (default: auto-detected CPU cores)
     -r, --run-tests         Run tests after building
-    -i, --install PREFIX    Install to PREFIX directory (default: ${sourceDir}/out/install/${presetName})
+    -i, --install PREFIX    Install to PREFIX directory (default: ${sourceDir}/out/install/${BUILD_TYPE})
+    -v, --verbose           Verbose build output
+    --no-tests              Don't build tests
+    --tests-only            Build and run tests only (implies --run-tests)
+    --docs                  Build documentation (requires Doxygen)
+    --open-docs             Build and open documentation in browser (implies --docs)
+```
+
+### build.bat Options (Windows)
+
+```text
+OPTIONS:
+    -h, --help              Show this help message
+    -c, --clean             Clean build (remove build directory first)
+    -t, --type TYPE         Build type: Debug, Release, RelWithDebInfo, MinSizeRel (default: Release)
+    -d, --build-dir DIR     Build directory (default: out\build\<type>)
+    -j, --jobs N            Number of parallel jobs (default: number of processors)
+    -r, --run-tests         Run tests after building
+    -i, --install PREFIX    Install to PREFIX directory (default: out\install\<type>)
     -v, --verbose           Verbose build output
     --no-tests              Don't build tests
     --tests-only            Build and run tests only (implies --run-tests)
@@ -120,6 +169,8 @@ OPTIONS:
 ```
 
 ### Examples
+
+**macOS/Linux**:
 
 ```bash
 # Development workflow - clean debug build with tests
@@ -138,36 +189,90 @@ OPTIONS:
 ./build.sh -c -t Debug -j 12 -r --docs -v
 ```
 
+**Windows**:
+
+```cmd
+REM Development workflow - clean debug build with tests
+build.bat --clean -t Debug -r
+
+REM Release build with documentation
+build.bat -t Release --open-docs
+
+REM Quick test verification
+build.bat --tests-only
+
+REM Production build and install
+build.bat --clean -t Release -i C:\local
+
+REM Parallel build with all features
+build.bat --clean -t Debug -j 12 -r --docs -v
+```
+
 ## Running Individual Tests
 
 After building, you can run specific tests using ctest:
 
+**macOS/Linux**:
+
 ```sh
 # Using --test-dir to specify build directory (CMake 3.20+)
-% ctest --test-dir out/build/x64-Darwin-Debug -R "fib.example1" --output-on-failure
+% ctest --test-dir out/build/Debug -R "fib.example1" --output-on-failure
 
 # List all available tests
-% ctest --test-dir out/build/x64-Darwin-Debug -N
+% ctest --test-dir out/build/Debug -N
 
 # Run a specific test with verbose output
-% ctest --test-dir out/build/x64-Darwin-Debug -R "fib.example1" --output-on-failure -V
+% ctest --test-dir out/build/Debug -R "fib.example1" --output-on-failure -V
 
 # Run all tests matching a pattern (e.g., all fib tests)
-% ctest --test-dir out/build/x64-Darwin-Debug -R "fib\." --output-on-failure
+% ctest --test-dir out/build/Debug -R "fib\." --output-on-failure
 
 # Run all tests
-% ctest --test-dir out/build/x64-Darwin-Debug --output-on-failure
+% ctest --test-dir out/build/Debug --output-on-failure
 
 # Alternative: Navigate to build directory first
-% cd out/build/x64-Darwin-Debug
+% cd out/build/Debug
 % ctest -R "fib.example1" --output-on-failure
 ```
 
-You can also debug tests directly with lldb:
+**Windows**:
+
+```cmd
+REM Using --test-dir to specify build directory (CMake 3.20+)
+ctest --test-dir out\build\Debug -R "fib.example1" --output-on-failure -C Debug
+
+REM List all available tests
+ctest --test-dir out\build\Debug -N -C Debug
+
+REM Run a specific test with verbose output
+ctest --test-dir out\build\Debug -R "fib.example1" --output-on-failure -V -C Debug
+
+REM Run all tests matching a pattern (e.g., all fib tests)
+ctest --test-dir out\build\Debug -R "fib\." --output-on-failure -C Debug
+
+REM Run all tests
+ctest --test-dir out\build\Debug --output-on-failure -C Debug
+
+REM Alternative: Navigate to build directory first
+cd out\build\Debug
+ctest -R "fib.example1" --output-on-failure -C Debug
+```
+
+You can also debug tests directly:
+
+**macOS/Linux with lldb**:
 
 ```sh
 # Debug with lldb
-% lldb -- out/build/x64-Darwin-Debug/tests/solution/tests_solution "--gtest_filter=fib.example1" "--gtest_also_run_disabled_tests"
+% lldb -- out/build/Debug/tests/solution/tests_solution "--gtest_filter=fib.example1" "--gtest_also_run_disabled_tests"
+```
+
+**Windows with Visual Studio Debugger**:
+
+```cmd
+REM Open the test executable in Visual Studio or use the debugger from VS Code
+REM You can also run tests with the --gtest_filter flag:
+out\build\Debug\tests\solution\Debug\tests_solution.exe --gtest_filter=fib.example1 --gtest_also_run_disabled_tests
 ```
 
 ### Running Code Quality Tools

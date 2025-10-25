@@ -1,47 +1,38 @@
-cmake_minimum_required(
-  VERSION 3.25
-)
+cmake_minimum_required(VERSION 3.25)
 
-# set the project name and version
+# Generate compile_commands.json for clang-tidy
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# Set the project name and version
 project(
   leetcode_cpp
-  VERSION     1.0
+  VERSION     1.0.0
   DESCRIPTION "practice with leetcode"
   LANGUAGES   CXX
 )
 
 # Including custom cmake utilities
-list(
-  APPEND CMAKE_MODULE_PATH
-  "${CMAKE_SOURCE_DIR}/cmake"
-)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(RequireOutOfSourceBuilds)
 include(FindDependency)
 
-# Ensures that the project is built outside of the source directory.
+# Ensures that the project is built outside of the source directory
 require_out_of_source_build()
 
 # Specify the C++ standard
-#
 # Create an interface library target named "compiler_flags" to hold common
-# compiler settings (no actual object code is produced).
+# compiler settings (no actual object code is produced)
 add_library(compiler_flags INTERFACE)
 
-# Require C++20 for all targets that link against compiler_flags.
+# Require C++20 for all targets that link against compiler_flags
 target_compile_features(compiler_flags INTERFACE cxx_std_20)
 
 # Add compiler warning flags
-#
-# Define generator expressions to detect compiler families.
-#   - gcc_like_cxx: Matches ARMClang, AppleClang, Clang, GNU, and LCC.
-#   - msvc_cxx:     Matches MSVC.
+# Define generator expressions to detect compiler families
 set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
 set(msvc_cxx     "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
 
-# Apply warning options only when building this project (BUILD_INTERFACE).
-#
-# For gcc/clang-like compilers: -Wall -Wextra -Wshadow -Wformat=2 -Wunused
-# For MSVC: /W3
+# Apply warning options only when building this project (BUILD_INTERFACE)
 target_compile_options(compiler_flags INTERFACE
   "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
   "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
@@ -49,11 +40,32 @@ target_compile_options(compiler_flags INTERFACE
 
 include(GNUInstallDirs)
 
-# Put libraries in lib, executables in bin, headers in include
-set(CMAKE_INSTALL_RPATH "@executable_path/../${CMAKE_INSTALL_LIBDIR}")
-set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
+# Configure RPATH settings for proper runtime library linking
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
+# Platform-specific configurations
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(CMAKE_MACOSX_RPATH TRUE)
+    set(CMAKE_INSTALL_RPATH "@executable_path/../${CMAKE_INSTALL_LIBDIR}")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    set(CMAKE_INSTALL_RPATH "$ORIGIN/../${CMAKE_INSTALL_LIBDIR}")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    # On Windows, DLLs are searched in the same directory as the executable
+    # or in directories specified by PATH
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+    # For multi-config generators (Visual Studio)
+    foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
+        string(TOUPPER ${CONFIG} CONFIG_UPPER)
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CONFIG_UPPER} ${CMAKE_BINARY_DIR}/bin/${CONFIG})
+        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_${CONFIG_UPPER} ${CMAKE_BINARY_DIR}/lib/${CONFIG})
+        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${CONFIG_UPPER} ${CMAKE_BINARY_DIR}/lib/${CONFIG})
+    endforeach()
+endif()
+
+# Add subdirectories
 add_subdirectory(src)
 add_subdirectory(bin)
 

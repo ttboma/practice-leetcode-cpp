@@ -53,10 +53,10 @@ OPTIONS:
     -h, --help              Show this help message
     -c, --clean             Clean build (remove build directory first)
     -t, --type TYPE         Build type: Debug, Release, RelWithDebInfo, MinSizeRel (default: Release)
-    -d, --build-dir DIR     Build directory (default: "\${sourceDir}/out/build/\${presetName}")
-    -j, --jobs N            Number of parallel jobs (default: $(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4))
+    -d, --build-dir DIR     Build directory (default: ${SOURCE_DIR}/out/build/${BUILD_TYPE})
+    -j, --jobs N            Number of parallel jobs (default: 8)
     -r, --run-tests         Run tests after building
-    -i, --install PREFIX    Install to PREFIX directory (default: \${sourceDir}/out/install/\${presetName})
+    -i, --install PREFIX    Install to PREFIX directory (default: ${SOURCE_DIR}/out/install/${BUILD_TYPE})
     -v, --verbose           Verbose build output
     --no-tests              Don't build tests
     --tests-only            Build and run tests only (implies --run-tests)
@@ -147,17 +147,13 @@ case $BUILD_TYPE in
         ;;
 esac
 
-# Determine preset name based on OS and build type
-OS_NAME=$(uname -s)
-PRESET_NAME="x64-${OS_NAME}-${BUILD_TYPE}"
-
 # Set default build and install directories if not specified
 if [[ -z "$BUILD_DIR" ]]; then
-    BUILD_DIR="${SOURCE_DIR}/out/build/${PRESET_NAME}"
+    BUILD_DIR="${SOURCE_DIR}/out/build/${BUILD_TYPE}"
 fi
 
 if [[ -z "$INSTALL_PREFIX" ]]; then
-    INSTALL_PREFIX="${SOURCE_DIR}/out/install/${PRESET_NAME}"
+    INSTALL_PREFIX="${SOURCE_DIR}/out/install/${BUILD_TYPE}"
 fi
 
 print_info "========================================"
