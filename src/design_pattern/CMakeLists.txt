@@ -1,11 +1,11 @@
 file(
-    GLOB src_design_pattern_cpps
+    GLOB srcDesignPatternCpps
     *.cpp
 )
 
 add_library(
     src_design_pattern
-    ${src_design_pattern_cpps}
+    ${srcDesignPatternCpps}
 )
 
 target_compile_definitions(

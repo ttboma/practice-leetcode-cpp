@@ -1,5 +1,5 @@
 # Collect all test files from subdirectories
-file(GLOB_RECURSE tests_solution_cpps
+file(GLOB_RECURSE testsSolutionCpps
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/array/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/string/*.cpp
@@ -10,7 +10,7 @@ file(GLOB_RECURSE tests_solution_cpps
     ${CMAKE_CURRENT_SOURCE_DIR}/heap/*.cpp
 )
 
-add_executable(tests_solution ${tests_solution_cpps})
+add_executable(tests_solution ${testsSolutionCpps})
 
 target_link_libraries(
     tests_solution

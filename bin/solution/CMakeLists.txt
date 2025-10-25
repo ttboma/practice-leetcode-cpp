@@ -1,11 +1,11 @@
 file(
-    GLOB bin_solution_cpps
+    GLOB binSolutionCpps
     *.cpp
 )
 
 add_executable(
     bin_solution
-    ${bin_solution_cpps}
+    ${binSolutionCpps}
 )
 
 # Strip symbols in Release builds

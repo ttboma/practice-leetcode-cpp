@@ -1,5 +1,5 @@
 # Collect all source files from subdirectories
-file(GLOB_RECURSE src_solution_cpps
+file(GLOB_RECURSE srcSolutionCpps
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/array/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/string/*.cpp
@@ -12,7 +12,7 @@ file(GLOB_RECURSE src_solution_cpps
 
 add_library(
     src_solution
-    ${src_solution_cpps}
+    ${srcSolutionCpps}
 )
 
 target_compile_definitions(

@@ -1,9 +1,9 @@
 file(
-    GLOB tests_design_pattern_cpps
+    GLOB testsDesignPatternCpps
     *.cpp
 )
 
-add_executable(tests_design_pattern ${tests_design_pattern_cpps})
+add_executable(tests_design_pattern ${testsDesignPatternCpps})
 
 target_link_libraries(
     tests_design_pattern

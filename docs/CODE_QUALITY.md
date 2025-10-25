@@ -240,6 +240,150 @@ auto f = [](int x) { return x * 2; };              ✗ non-descriptive
 | Enums | `UPPER_SNAKE_CASE` | `RED`, `IN_PROGRESS` |
 | Private Members | `camelCase` | `nodeValue`, `leftChild` |
 
+## CMake Naming Conventions
+
+To maintain consistency with C++ naming standards, CMake files follow specific conventions for variables, filenames, functions, and targets.
+
+### CMake Variable Names
+
+**Convention**: `camelCase`
+
+- First letter lowercase, capitalize first letter of each subsequent word
+- Use descriptive names for file collections and configuration variables
+
+**Good Examples:**
+
+```cmake
+set(gccLikeCxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
+set(msvcCxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
+set(srcSolutionCpps ...)
+set(testsSolutionCpps ...)
+set(gtestForceSharedCrt ON)
+```
+
+**Bad Examples (Don't use):**
+
+```cmake
+set(gcc_like_cxx ...)        # snake_case
+set(GccLikeCxx ...)          # PascalCase
+set(src_solution_cpps ...)   # snake_case
+```
+
+### CMake Filenames
+
+**Convention**: `snake_case`
+
+- Use lowercase letters and underscores to separate words
+- Apply the same convention as C++ source files
+
+**Good Examples:**
+- `cmake/find_dependency.cmake`
+- `cmake/require_out_of_source_builds.cmake`
+
+**Bad Examples (Don't use):**
+- `cmake/FindDependency.cmake` ✗ PascalCase
+- `cmake/find-dependency.cmake` ✗ hyphens
+
+### CMake Function Names
+
+**Convention**: `camelCase`
+
+- First letter lowercase, capitalize first letter of each subsequent word
+- Use verbs to represent actions
+- Follow the same convention as C++ function names
+
+**Good Examples:**
+
+```cmake
+function(requireOutOfSourceBuild)
+    # ...
+endfunction()
+
+function(findAndLinkDependencies)
+    # ...
+endfunction()
+```
+
+**Bad Examples (Don't use):**
+
+```cmake
+function(require_out_of_source_build)   # snake_case
+function(RequireOutOfSourceBuild)       # PascalCase
+function(REQUIRE_OUT_OF_SOURCE_BUILD)   # all uppercase
+```
+
+### CMake Target Names
+
+**Convention**: `snake_case`
+
+- Use lowercase letters and underscores to separate words
+- Target names should be descriptive and indicate their purpose
+
+**Good Examples:**
+
+```cmake
+add_library(src_solution ...)
+add_executable(tests_solution ...)
+add_library(src_design_pattern ...)
+add_executable(tests_design_pattern ...)
+add_executable(bin_solution ...)
+```
+
+**Bad Examples (Don't use):**
+
+```cmake
+add_library(SrcSolution ...)            # PascalCase
+add_library(src-solution ...)           # hyphens
+add_executable(TestsSolution ...)       # PascalCase
+```
+
+### CMake Summary Table
+
+| Element | Convention | Example |
+|---------|-----------|---------|
+| Variables | `camelCase` | `gccLikeCxx`, `srcSolutionCpps` |
+| Filenames | `snake_case` | `find_dependency.cmake` |
+| Functions | `camelCase` | `requireOutOfSourceBuild()` |
+| Targets | `snake_case` | `src_solution`, `tests_solution` |
+
+### Examples from Project
+
+**CMakeLists.txt References:**
+
+```cmake
+# Including cmake modules with snake_case filenames
+include(require_out_of_source_builds)
+include(find_dependency)
+
+# Calling camelCase functions
+requireOutOfSourceBuild()
+
+# File collections with camelCase variables
+file(GLOB_RECURSE srcSolutionCpps ...)
+file(GLOB testsSolutionCpps ...)
+
+# Creating snake_case targets
+add_library(src_solution ${srcSolutionCpps})
+add_executable(tests_solution ${testsSolutionCpps})
+```
+
+**cmake/find_dependency.cmake (snake_case filename):**
+
+```cmake
+# camelCase variables
+set(gtestForceSharedCrt ON CACHE BOOL "" FORCE)
+```
+
+**cmake/require_out_of_source_builds.cmake (snake_case filename):**
+
+```cmake
+# camelCase function name
+function(requireOutOfSourceBuild)
+    file(TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" locPath)
+    # ...
+endfunction()
+```
+
 ## Configuration Files
 
 ### .clang-format
