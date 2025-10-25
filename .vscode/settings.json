@@ -69,4 +69,9 @@
         "DOCS:"
     ],
     "todo-tree.regex.regex": "((//|#)|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS).*(\\n\\s*(//|#)\\s{2,}.*)*",
+    "files.associations": {
+        "*.json.in": "json",
+        "*.lua.in": "lua",
+        "unordered_map": "cpp"
+    },
 }

@@ -14,6 +14,7 @@
 #include <vector>
 
 // Include data structures
+#include "data_structures/graph_nodes.hpp"
 #include "data_structures/list_node.hpp"
 #include "data_structures/median_finder.hpp"
 #include "data_structures/quad_tree.hpp"
@@ -88,6 +89,7 @@ public:
     int findKthLargest(std::vector<int>& nums, int k);
     std::vector<std::vector<int>> kSmallestPairs(std::vector<int>& nums1, std::vector<int>& nums2, int k);
     int findMaximizedCapital(int k, int w, std::vector<int>& profits, std::vector<int>& capital);
+    GraphNode* cloneGraph(GraphNode* node);
 
     // Comparison utilities
 public:
