@@ -12,6 +12,234 @@ Both tools are integrated with:
 1. Pre-commit hooks (recommended for development)
 2. CMake targets (for manual runs)
 
+## Naming Conventions
+
+This project follows a unified naming convention across all C++ code. Consistency is essential for maintainability and readability.
+
+### File and Folder Names
+
+**Convention**: `snake_case`
+
+- Use lowercase letters and underscores to separate words
+- Examples: `abstract_factory.hpp`, `clone_graph.cpp`, `data_structures/`, `design_pattern/`
+
+**Good Examples:**
+```
+include/data_structures/tree_node.hpp
+include/design_pattern/abstract_factory.hpp
+include/graph/breadth_first_search.hpp
+src/solution/array/find_subsequences.cpp
+src/solution/dynamic_programming/climb_stairs.cpp
+```
+
+**Bad Examples (Don't use):**
+```
+include/data_structures/TreeNode.hpp           ✗ PascalCase for files
+include/design_pattern/abstractFactory.hpp     ✗ camelCase for files
+src/solution/array/FindSubsequences.cpp        ✗ PascalCase for files
+```
+
+### Class Names
+
+**Convention**: `PascalCase`
+
+- First letter uppercase, capitalize start of each word
+- No underscores or hyphens
+- Use nouns to represent objects/entities
+
+**Good Examples:**
+```cpp
+class Solution { };
+class TreeNode { };
+class GraphNode { };
+class CloneGraphVisitor { };
+class MedianFinder { };
+```
+
+**Bad Examples (Don't use):**
+```cpp
+class solution { };              ✗ lowercase
+class tree_node { };             ✗ snake_case
+class TREENODE { };              ✗ all uppercase
+```
+
+### Function and Method Names
+
+**Convention**: `camelCase`
+
+- First letter lowercase, capitalize first letter of each subsequent word
+- Use verbs to represent actions
+- No underscores or hyphens
+
+**Good Examples:**
+```cpp
+void addBinary(std::string a, std::string b);
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2);
+int findKthLargest(std::vector<int>& nums, int k);
+void discoverGreyTarget(Node* u, Node* v);
+bool isBalanced(TreeNode* root);
+```
+
+**Bad Examples (Don't use):**
+```cpp
+void add_binary(std::string a, std::string b);    ✗ snake_case
+void AddBinary(std::string a, std::string b);     ✗ PascalCase
+void ADDBINARY(std::string a, std::string b);     ✗ all uppercase
+```
+
+### Variable Names
+
+**Convention**: `camelCase`
+
+- First letter lowercase, capitalize first letter of each subsequent word
+- Use descriptive, meaningful names
+- No trailing underscores or prefixes
+- Use nouns to represent data
+
+**Good Examples:**
+```cpp
+int nodeCount;
+std::vector<int> neighbors;
+std::unordered_map<int, int> nodeMap;
+TreeNode* root;
+int maximumDepth;
+bool isVisited;
+```
+
+**Bad Examples (Don't use):**
+```cpp
+int node_count;              ✗ snake_case
+int NodeCount;               ✗ PascalCase
+int count_;                  ✗ trailing underscore
+int _count;                  ✗ leading underscore
+int c;                       ✗ non-descriptive
+```
+
+### Type Aliases and Templates
+
+**Convention**: `PascalCase`
+
+- Use PascalCase for typedef/using declarations
+- Capitalize first letter of each word
+
+**Good Examples:**
+```cpp
+using VertexType = GraphNode*;
+using ColorMap = std::unordered_map<GraphNode*, Color>;
+using AdjacencyList = std::vector<std::vector<int>>;
+template<typename ValueType>
+class Container { };
+```
+
+**Bad Examples (Don't use):**
+```cpp
+using vertex_type = GraphNode*;        ✗ snake_case
+using vertexType = GraphNode*;         ✗ mixed case
+using VERTEX_TYPE = GraphNode*;        ✗ all uppercase
+```
+
+### Constants
+
+**Convention**: `UPPER_SNAKE_CASE`
+
+- Use all uppercase letters with underscores
+- Should be `constexpr` or `const`
+
+**Good Examples:**
+```cpp
+constexpr int MAX_ARRAY_SIZE = 1000;
+constexpr double PI = 3.14159;
+const std::string DEFAULT_NAME = "Unknown";
+```
+
+### Enum Values
+
+**Convention**: `UPPER_SNAKE_CASE`
+
+- Enum values follow the same convention as constants
+
+**Good Examples:**
+```cpp
+enum class Color {
+    RED,
+    GREEN,
+    BLUE,
+    UNKNOWN
+};
+
+enum Status {
+    IN_PROGRESS,
+    COMPLETED,
+    FAILED
+};
+```
+
+### Private/Protected Members
+
+**Convention**: `camelCase` (no trailing underscores)
+
+- Use regular camelCase without special prefixes or suffixes
+- Let access specifiers (private/protected) indicate visibility
+- Avoid trailing underscores like `root_` or `count_`
+
+**Good Examples:**
+```cpp
+class TreeNode {
+private:
+    int value;
+    TreeNode* leftChild;
+    TreeNode* rightChild;
+    std::vector<int> neighbors;
+
+public:
+    void addNeighbor(int neighbor);
+};
+```
+
+**Bad Examples (Don't use):**
+```cpp
+class TreeNode {
+private:
+    int value_;              ✗ trailing underscore
+    int m_value;             ✗ Hungarian notation
+    int _value;              ✗ leading underscore
+    TreeNode* left_child;    ✗ snake_case
+};
+```
+
+### Lambda Variables
+
+**Convention**: `camelCase`
+
+- Same as regular variables
+- Use descriptive names even for short lambdas
+
+**Good Examples:**
+```cpp
+auto isEven = [](int x) { return x % 2 == 0; };
+auto multiply = [factor](int x) { return x * factor; };
+```
+
+**Bad Examples (Don't use):**
+```cpp
+auto is_even = [](int x) { return x % 2 == 0; };   ✗ snake_case
+auto f = [](int x) { return x * 2; };              ✗ non-descriptive
+```
+
+### Summary Table
+
+| Element | Convention | Example |
+|---------|-----------|---------|
+| Folders | `snake_case` | `data_structures`, `design_pattern` |
+| Files | `snake_case` | `tree_node.hpp`, `clone_graph.cpp` |
+| Classes | `PascalCase` | `Solution`, `TreeNode`, `GraphNode` |
+| Functions | `camelCase` | `addTwoNumbers()`, `findLargest()` |
+| Variables | `camelCase` | `nodeCount`, `neighbors` |
+| Type Aliases | `PascalCase` | `VertexType`, `ColorMap` |
+| Constants | `UPPER_SNAKE_CASE` | `MAX_SIZE`, `DEFAULT_VALUE` |
+| Enums | `UPPER_SNAKE_CASE` | `RED`, `IN_PROGRESS` |
+| Private Members | `camelCase` | `nodeValue`, `leftChild` |
+
 ## Configuration Files
 
 ### .clang-format

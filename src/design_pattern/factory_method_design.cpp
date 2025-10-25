@@ -1,4 +1,4 @@
-#include "design_pattern/factoryMethodDesign.hpp"
+#include "design_pattern/factory_method_design.hpp"
 
 #include <iostream>
 

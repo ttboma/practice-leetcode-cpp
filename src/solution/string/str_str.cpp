@@ -6,7 +6,7 @@ std::vector<std::string::size_type> kmp(const std::string& p) {
         return std::vector<std::string::size_type>{};
 
     auto r = std::vector<std::string::size_type>{0};
-    for (std::string::size_type i = 1, i_end = p.size(); i != i_end; ++i) {
+    for (std::string::size_type i = 1, iEnd = p.size(); i != iEnd; ++i) {
         for (auto k = r[i - 1]; true; k = r[k - 1]) {
             if (p[k] == p[i]) {
                 r.push_back(k + 1);

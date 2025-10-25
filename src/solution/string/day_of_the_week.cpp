@@ -10,6 +10,6 @@ std::string Solution::dayOfTheWeek(int day, int month, int year) {
     int k = year % 100;
     int j = year / 100;
     int f = day + (13 * (month + 1)) / 5 + k + k / 4 + j / 4 + 5 * j;
-    int weekday_index = f % 7;
-    return weekdays[(weekday_index + 6) % 7];
+    int weekdayIndex = f % 7;
+    return weekdays[(weekdayIndex + 6) % 7];
 }

@@ -40,7 +40,7 @@ private:
 
 public:
     template <typename Function>
-    explicit memoize_recursive_helper(Function&& f_) : f(std::forward<Function>(f_)) {}
+    explicit memoize_recursive_helper(Function&& f) : f(std::forward<Function>(f)) {}
 
     Result operator()(Args... args) const {
         std::unique_lock<std::recursive_mutex> lock{m_cache_mutex};

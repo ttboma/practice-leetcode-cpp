@@ -1,4 +1,4 @@
-#include "graph/breadthFirstSearch.hpp"
+#include "graph/breadth_first_search.hpp"
 #include "solution.hpp"
 
 // Graph adapter for Node* based graphs (LeetCode style)
@@ -6,16 +6,16 @@ class GraphNodeAdapter {
 public:
     using VertexType = GraphNode*;
 
-    explicit GraphNodeAdapter(VertexType root) : root_(root) {}
+    explicit GraphNodeAdapter(VertexType root) : root(root) {}
 
-    std::vector<VertexType> adjacent_vertices(VertexType u) const {
+    std::vector<VertexType> adjacentVertices(VertexType u) const {
         if (!u)
             return {};
         return u->neighbors;
     }
 
 private:
-    VertexType root_;
+    VertexType root;
 };
 
 struct CloneGraphVisitor : public graph::DefaultBfsVisitor<GraphNode*> {
@@ -27,13 +27,13 @@ struct CloneGraphVisitor : public graph::DefaultBfsVisitor<GraphNode*> {
         copiedRoot = nodeMap[originalRoot];
     }
 
-    void tree_edge(GraphNode* u, GraphNode* v) const {
+    void treeEdge(GraphNode* u, GraphNode* v) const {
         nodeMap[v] = new GraphNode(v->val);
         nodeMap[u]->neighbors.push_back(nodeMap[v]);
         nodeMap[v]->neighbors.push_back(nodeMap[u]);
     }
 
-    void discover_grey_target(GraphNode* u, GraphNode* v) const {
+    void greyTarget(GraphNode* u, GraphNode* v) const {
         nodeMap[u]->neighbors.push_back(nodeMap[v]);
         nodeMap[v]->neighbors.push_back(nodeMap[u]);
     }
@@ -45,7 +45,7 @@ GraphNode* Solution::cloneGraph(GraphNode* node) {
 
     CloneGraphVisitor vis{node};
     std::unordered_map<GraphNode*, graph::Color> colorMap;
-    graph::breadth_first_search(GraphNodeAdapter{node}, node, vis, colorMap);
+    graph::breadthFirstSearch(GraphNodeAdapter{node}, node, vis, colorMap);
 
     return vis.copiedRoot;
 }

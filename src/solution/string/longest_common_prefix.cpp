@@ -6,8 +6,8 @@ std::string Solution::longestCommonPrefix(std::vector<std::string>& strs) {
     if (strs.empty())
         return "";
 
-    for (std::size_t j = 0, j_end = strs[0].size(); j != j_end; ++j) {
-        for (std::size_t i = 1, i_end = strs.size(); i != i_end; ++i) {
+    for (std::size_t j = 0, jEnd = strs[0].size(); j != jEnd; ++j) {
+        for (std::size_t i = 1, iEnd = strs.size(); i != iEnd; ++i) {
             if (strs[i][j] != strs[0][j])
                 return ret;
         }

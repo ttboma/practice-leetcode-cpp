@@ -1,6 +1,6 @@
-#include "design_pattern/abstractFactory.hpp"
-
 #include <gtest/gtest.h>
+
+#include "design_pattern/abstract_factory.hpp"
 
 // ----- Client Code -----
 class Application {

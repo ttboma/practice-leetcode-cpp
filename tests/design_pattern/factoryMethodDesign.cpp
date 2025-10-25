@@ -1,6 +1,6 @@
-#include "design_pattern/factoryMethodDesign.hpp"
-
 #include <gtest/gtest.h>
+
+#include "design_pattern/factory_method_design.hpp"
 
 void usingFactoryMethodDesign(ShapeFactory& factory) {
     auto shape = factory.createShape();

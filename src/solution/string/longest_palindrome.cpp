@@ -58,7 +58,7 @@ std::string ManachersAlgorithm(std::string s) {
 
 std::string longestPalindromeDp(std::string s) {
     std::size_t start = 0;
-    std::size_t max_len = 1;
+    std::size_t maxLen = 1;
     std::vector<std::vector<bool>> dp(s.size(), std::vector<bool>(s.size(), false));
 
     for (std::size_t i = 0; i < s.size(); ++i) {
@@ -69,14 +69,14 @@ std::string longestPalindromeDp(std::string s) {
             std::size_t j = i + d;
             if (s[i] == s[j] && (d <= 2 || dp[i + 1][j - 1])) {
                 dp[i][j] = true;
-                if (j - i + 1 > max_len) {
-                    max_len = j - i + 1;
+                if (j - i + 1 > maxLen) {
+                    maxLen = j - i + 1;
                     start = i;
                 }
             }
         }
     }
-    return s.substr(start, max_len);
+    return s.substr(start, maxLen);
 }
 
 /// # 5. Longest Palindromic Substring

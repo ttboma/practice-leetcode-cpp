@@ -34,9 +34,9 @@ public:
         for (std::vector<Node*>::size_type i = 0; i != items.size(); ++i) {
             if (items[i][1] == "null")
                 continue;
-            int random_index = std::stoi(items[i][1]);
-            if (static_cast<size_type>(random_index) < nodes.size()) {
-                nodes[i]->random = nodes[random_index];
+            int randomIndex = std::stoi(items[i][1]);
+            if (static_cast<size_type>(randomIndex) < nodes.size()) {
+                nodes[i]->random = nodes[randomIndex];
             }
         }
 

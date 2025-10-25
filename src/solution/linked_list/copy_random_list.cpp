@@ -65,21 +65,20 @@ Node* Solution::copyRandomList(Node* head) {
     }
 
     std::unordered_map<Node*, Node*> visited;
-    Node* new_head = new Node{head->val};
-    visited.emplace(head, new_head);
+    Node* newHead = new Node{head->val};
+    visited.emplace(head, newHead);
 
-    for (auto curr = head->next, prev = new_head; curr != nullptr; curr = curr->next, prev = prev->next) {
+    for (auto curr = head->next, prev = newHead; curr != nullptr; curr = curr->next, prev = prev->next) {
         auto copied_curr = new Node{curr->val};
         visited.emplace(curr, copied_curr);
         prev->next = copied_curr;
     }
 
-    for (auto curr = head, copied_curr = new_head; curr != nullptr;
-         curr = curr->next, copied_curr = copied_curr->next) {
+    for (auto curr = head, copiedCurr = newHead; curr != nullptr; curr = curr->next, copiedCurr = copiedCurr->next) {
         if (curr->random == nullptr)
             continue;
-        copied_curr->random = visited[curr->random];
+        copiedCurr->random = visited[curr->random];
     }
 
-    return new_head;
+    return newHead;
 }

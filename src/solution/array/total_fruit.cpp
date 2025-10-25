@@ -12,25 +12,25 @@ int Solution::totalFruit(std::vector<int>& fruits) {
         return static_cast<int>(i);
     }
     int bucket[2] = {fruits[0], fruits[i++]};
-    auto max = static_cast<int>(i);
-    auto cur_max = static_cast<int>(i);
+    auto maxVal = static_cast<int>(i);
+    auto curMax = static_cast<int>(i);
     auto conseq = 1;
     for (std::size_t idx = i; idx != fruits.size(); ++idx) {
         if (bucket[1] == fruits[idx]) {
-            cur_max = cur_max + 1;
+            curMax = curMax + 1;
             conseq = conseq + 1;
         } else if (bucket[0] == fruits[idx]) {
-            cur_max = cur_max + 1;
+            curMax = curMax + 1;
             conseq = 1;
             bucket[0] = bucket[1];
             bucket[1] = fruits[idx];
         } else {
-            max = std::max(max, cur_max);
+            maxVal = std::max(maxVal, curMax);
             bucket[0] = bucket[1];
             bucket[1] = fruits[idx];
-            cur_max = conseq + 1;
+            curMax = conseq + 1;
             conseq = 1;
         }
     }
-    return std::max(max, cur_max);
+    return std::max(maxVal, curMax);
 }
