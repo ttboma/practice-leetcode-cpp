@@ -17,7 +17,6 @@ list(
 )
 include(RequireOutOfSourceBuilds)
 include(FindDependency)
-include(ClangCxxDevTools)
 
 # Ensures that the project is built outside of the source directory.
 require_out_of_source_build()
@@ -58,9 +57,9 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 add_subdirectory(src)
 add_subdirectory(bin)
 
-# Defines a test target
+# Defines test targets
 enable_testing()
-
 add_subdirectory(tests)
 
+# Defines documentation targets
 add_subdirectory(docs)
