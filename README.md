@@ -7,10 +7,11 @@
     - [Libraries](#libraries)
     - [Development Tools (Installed in Virtual Environment)](#development-tools-installed-in-virtual-environment)
     - [Documentation](#documentation)
+    - [IDE Support](#ide-support)
   - [Build, Test, Docs and Install](#build-test-docs-and-install)
     - [Quick Start](#quick-start)
-    - [build.sh Options (macOS/Linux)](#buildsh-options-macoslinux)
-    - [build.bat Options (Windows)](#buildbat-options-windows)
+    - [Python Build Script Options](#python-build-script-options)
+    - [Platform Detection](#platform-detection)
     - [Examples](#examples)
   - [Running Individual Tests](#running-individual-tests)
     - [Running Code Quality Tools](#running-code-quality-tools)
@@ -50,7 +51,7 @@ This project is a collection of solutions to LeetCode problems provided by ***SH
   - **Linux**: GCC ≥ 10 or Clang ≥ 11
   - **Windows**: Visual Studio 2022 with C++ tools, MinGW-w64, or Clang
 - **CMake** (≥ 3.25): Build system generator
-- **Python** (≥ 3.8): For development tools (pre-commit, clang-format, clang-tidy)
+- **Python** (≥ 3.7): Required for the unified build script and development tools
 
 ### Libraries
 
@@ -63,11 +64,13 @@ This project is a collection of solutions to LeetCode problems provided by ***SH
 
 ### Development Tools (Installed in Virtual Environment)
 
-All development tools are automatically installed in `.venv/` when running `./scripts/setup-dev-environment.sh`:
+All development tools are automatically installed in `.venv/` when running the Python build script:
 
-- **pre-commit** (4.3.0): Git hooks framework for code quality checks
-- **clang-format** (21.1.2): Code formatter
-- **clang-tidy** (21.1.1): Static analyzer and linter
+- **pre-commit** (≥ 4.3.0): Git hooks framework for code quality checks
+- **clang-format** (≥ 21.1.2): Code formatter
+- **clang-tidy** (≥ 21.1.1): Static analyzer and linter
+
+The Python build script (`python3 build.py`) automatically creates the virtual environment and installs these tools on first run.
 
 ### Documentation
 
@@ -80,137 +83,105 @@ The build system automatically creates a `compile_commands.json` symlink for Int
 
 ## Build, Test, Docs and Install
 
-The project supports cross-platform builds on macOS, Linux, and Windows.
+The project supports unified cross-platform builds on macOS, Linux, and Windows using the new **Python build script**.
 
 ### Quick Start
 
-**On macOS/Linux**:
+Use the unified Python build script for all platforms:
 
 ```bash
 # Simple release build
-./build.sh
+python3 build.py
 
 # Clean debug build with tests
-./build.sh -c -t Debug -r
+python3 build.py -c -t Debug -r
 
-# Build with 8 parallel jobs and verbose output
-./build.sh -j 8 -v
+# Build with verbose output
+python3 build.py -v
 
 # Build and open documentation
-./build.sh --open-docs
+python3 build.py --open-docs
 
 # Build and install to custom location
-./build.sh -i /usr/local
+python3 build.py -i /usr/local        # Unix/macOS
+python3 build.py -i C:\local          # Windows
 
 # Just run tests
-./build.sh --tests-only
+python3 build.py --tests-only
+
+# Get help and see all options
+python3 build.py --help
 ```
 
-**On Windows**:
+**Note**: The script uses the system Python3 interpreter and creates a virtual environment for development tools.
 
-```cmd
-REM Simple release build
-build.bat
+**Before first use**, the Python script will automatically:
 
-REM Clean debug build with tests
-build.bat --clean -t Debug -r
+- Check for required dependencies (CMake, C++ compiler, Python)
+- Detect your platform (Darwin/Linux/Windows) and CPU count
+- Warn if Doxygen is not found (for documentation builds)
+- Create a Python virtual environment (`.venv/`)
+- Install development tools (pre-commit, clang-format, clang-tidy)
+- Set up pre-commit hooks for code quality
+- Create IDE support files (`compile_commands.json`)
 
-REM Build with 8 parallel jobs and verbose output
-build.bat -j 8 -v
-
-REM Build and open documentation
-build.bat --open-docs
-
-REM Build and install to custom location
-build.bat -i C:\local
-
-REM Just run tests
-build.bat --tests-only
-```
-
-**Before first use**, the script will automatically:
-
-- Check for required dependencies (CMake, C++ compiler)
-- Warn if Doxygen is not found
-- Create a Python virtual environment (`.venv/`) (Unix systems only)
-- Install pre-commit, clang-format, and clang-tidy (Unix systems only)
-- Set up pre-commit hooks (Unix systems only)
-
-### build.sh Options (macOS/Linux)
+### Python Build Script Options
 
 ```text
 OPTIONS:
-    -h, --help              Show this help message
-    -c, --clean             Clean build (remove build directory first)
-    -t, --type TYPE         Build type: Debug, Release, RelWithDebInfo, MinSizeRel (default: Release)
-    -d, --build-dir DIR     Build directory (default: ${sourceDir}/out/build/${BUILD_TYPE})
-    -j, --jobs N            Number of parallel jobs (default: auto-detected CPU cores)
-    -r, --run-tests         Run tests after building
-    -i, --install PREFIX    Install to PREFIX directory (default: ${sourceDir}/out/install/${BUILD_TYPE})
-    -v, --verbose           Verbose build output
-    --no-tests              Don't build tests
-    --tests-only            Build and run tests only (implies --run-tests)
-    --docs                  Build documentation (requires Doxygen)
-    --open-docs             Build and open documentation in browser (implies --docs)
+  -h, --help              Show this help message and exit
+  -c, --clean             Clean build (remove build directory first)
+  -t {Debug,Release,RelWithDebInfo,MinSizeRel}, --type TYPE
+                          Build type (default: Release)
+  -d BUILD_DIR, --build-dir BUILD_DIR
+                          Build directory (default: <source>/out/build/<type>)
+  -j JOBS, --jobs JOBS    Number of parallel jobs (default: auto-detected CPU cores)
+  -r, --run-tests         Run tests after building
+  --no-tests              Don't build tests
+  --tests-only            Build and run tests only (implies --run-tests)
+  -i INSTALL, --install INSTALL
+                          Install to PREFIX directory (default: <source>/out/install/<type>)
+  --docs                  Build documentation (requires Doxygen)
+  --open-docs             Build and open documentation in browser (implies --docs)
+  -v, --verbose           Verbose build output
 ```
 
-### build.bat Options (Windows)
+### Platform Detection
 
-```text
-OPTIONS:
-    -h, --help              Show this help message
-    -c, --clean             Clean build (remove build directory first)
-    -t, --type TYPE         Build type: Debug, Release, RelWithDebInfo, MinSizeRel (default: Release)
-    -d, --build-dir DIR     Build directory (default: out\build\<type>)
-    -j, --jobs N            Number of parallel jobs (default: number of processors)
-    -r, --run-tests         Run tests after building
-    -i, --install PREFIX    Install to PREFIX directory (default: out\install\<type>)
-    -v, --verbose           Verbose build output
-    --no-tests              Don't build tests
-    --tests-only            Build and run tests only (implies --run-tests)
-    --docs                  Build documentation (requires Doxygen)
-    --open-docs             Build and open documentation in browser (implies --docs)
-```
+The Python script automatically detects and handles platform differences:
+
+- **macOS (Darwin)**: Uses `sysctl` for CPU detection, `open` for documentation viewing
+- **Linux**: Uses `os.cpu_count()` for CPU detection, `xdg-open` for documentation viewing
+- **Windows**: Uses `NUMBER_OF_PROCESSORS` environment variable, `start` for documentation viewing
 
 ### Examples
 
-**macOS/Linux**:
+**All Platforms (Same Commands)**:
 
 ```bash
 # Development workflow - clean debug build with tests
-./build.sh -c -t Debug -r
+python3 build.py -c -t Debug -r
 
 # Release build with documentation
-./build.sh -t Release --open-docs
+python3 build.py -t Release --open-docs
 
 # Quick test verification
-./build.sh --tests-only
+python3 build.py --tests-only
 
-# Production build and install
-./build.sh -c -t Release -i /usr/local
+# Production build and install (Unix/macOS)
+python3 build.py -c -t Release -i /usr/local
+
+# Production build and install (Windows)
+python3 build.py -c -t Release -i "C:\Program Files\MyApp"
 
 # Parallel build with all features
-./build.sh -c -t Debug -j 12 -r --docs -v
+python3 build.py -c -t Debug -j 12 -r --docs -v
+
+# Check what the script detects about your platform
+python3 platform_test.py
 ```
 
-**Windows**:
-
-```cmd
-REM Development workflow - clean debug build with tests
-build.bat --clean -t Debug -r
-
-REM Release build with documentation
-build.bat -t Release --open-docs
-
-REM Quick test verification
-build.bat --tests-only
-
-REM Production build and install
-build.bat --clean -t Release -i C:\local
-
-REM Parallel build with all features
-build.bat --clean -t Debug -j 12 -r --docs -v
-```
+**Note**: The script creates a virtual environment (`.venv/`) for development tools, ensuring consistent versions across different systems.
 
 ## Running Individual Tests
 
