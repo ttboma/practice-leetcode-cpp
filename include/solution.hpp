@@ -90,6 +90,7 @@ public:
     std::vector<std::vector<int>> kSmallestPairs(std::vector<int>& nums1, std::vector<int>& nums2, int k);
     int findMaximizedCapital(int k, int w, std::vector<int>& profits, std::vector<int>& capital);
     GraphNode* cloneGraph(GraphNode* node);
+    ListNode* reverseKGroup(ListNode* head, int k);
     int maxPoints(std::vector<std::vector<int>>& points);
 
     // Comparison utilities
