@@ -73,7 +73,7 @@ public:
     // Dynamic Programming
     int fib(int n);
     int climbStairs(int n);
-    int maxProfit(std::vector<int>& prices);
+    int maxProfit(int k, std::vector<int>& prices);
     int rob(std::vector<int>& nums);
     bool wordBreak(std::string s, std::vector<std::string>& wordDict);
     int coinChange(std::vector<int>& coins, int amount);
