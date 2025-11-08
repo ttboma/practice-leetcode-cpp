@@ -92,6 +92,7 @@ public:
     GraphNode* cloneGraph(GraphNode* node);
     ListNode* reverseKGroup(ListNode* head, int k);
     int maxPoints(std::vector<std::vector<int>>& points);
+    int minimumOneBitOperations(int n);
 
     // Comparison utilities
 public:
