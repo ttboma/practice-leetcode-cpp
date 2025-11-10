@@ -93,6 +93,7 @@ public:
     ListNode* reverseKGroup(ListNode* head, int k);
     int maxPoints(std::vector<std::vector<int>>& points);
     int minimumOneBitOperations(int n);
+    int minOperations(std::vector<int>& nums);
 
     // Comparison utilities
 public:
