@@ -1,15 +1,14 @@
 {
   "recommendations": [
     // Core C++ development
-    "ms-vscode.cpptools",
+    "ms-vscode.cpptools-extension-pack",
     "llvm-vs-code-extensions.vscode-clangd",
-
     // CMake support
     "ms-vscode.cmake-tools",
-
     // Enhanced syntax
     "jeff-hykin.better-cpp-syntax",
-
+    // Testing
+    "matepek.vscode-catch2-test-adapter",
     // Code quality
     "streetsidesoftware.code-spell-checker"
   ]

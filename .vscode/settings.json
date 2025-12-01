@@ -29,5 +29,8 @@
     "*.cpp": "cpp",
     "*.h": "c",
     "*.c": "c"
+  },
+  "files.watcherExclude": {
+    "**/target": true
   }
 }
