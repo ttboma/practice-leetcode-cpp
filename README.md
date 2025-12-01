@@ -106,8 +106,8 @@ python3 build.py --open-docs
 python3 build.py -i /usr/local        # Unix/macOS
 python3 build.py -i C:\local          # Windows
 
-# Just run tests
-python3 build.py --tests-only
+# Build without tests
+python3 build.py --no-tests
 
 # Get help and see all options
 python3 build.py --help
@@ -136,9 +136,8 @@ OPTIONS:
   -d BUILD_DIR, --build-dir BUILD_DIR
                           Build directory (default: <source>/out/build/<type>)
   -j JOBS, --jobs JOBS    Number of parallel jobs (default: auto-detected CPU cores)
-  -r, --run-tests         Run tests after building
   --no-tests              Don't build tests
-  --tests-only            Build and run tests only (implies --run-tests)
+  -r, --run-tests         Run tests after building (overridden by --no-tests)
   -i INSTALL, --install INSTALL
                           Install to PREFIX directory (default: <source>/out/install/<type>)
   --docs                  Build documentation (requires Doxygen)
@@ -165,8 +164,8 @@ python3 build.py -c -t Debug -r
 # Release build with documentation
 python3 build.py -t Release --open-docs
 
-# Quick test verification
-python3 build.py --tests-only
+# Build without tests for faster builds
+python3 build.py --no-tests
 
 # Production build and install (Unix/macOS)
 python3 build.py -c -t Release -i /usr/local

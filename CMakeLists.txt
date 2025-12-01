@@ -11,6 +11,9 @@ project(
   LANGUAGES   CXX
 )
 
+# Option to build tests (default ON)
+option(BUILD_TESTING "Build the testing tree." ON)
+
 # Including custom cmake utilities
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(require_out_of_source_builds)
@@ -70,8 +73,10 @@ add_subdirectory(src)
 add_subdirectory(bin)
 
 # Defines test targets
-enable_testing()
-add_subdirectory(tests)
+if(BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
 
 # Defines documentation targets
 add_subdirectory(docs)
